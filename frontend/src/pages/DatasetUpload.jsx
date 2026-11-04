@@ -169,13 +169,21 @@ export default function DatasetUpload() {
             >
               Upload Another
             </button>
-            <Link
-              to="/datasets"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm"
+            <button
+              onClick={async () => {
+                try {
+                  const { analysisApi } = await import('../services/api');
+                  const res = await analysisApi.triggerAnalysis(uploadedDataset.id);
+                  navigate(`/analyses/${res.data.id}`);
+                } catch (err) {
+                  alert('Analysis failed: ' + (err.response?.data?.message || err.message));
+                }
+              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-purple-600 hover:bg-purple-500 text-white transition shadow-sm"
             >
-              <span>Go to Datasets</span>
+              <span>Analyze Dataset Now</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </div>
       ) : (
@@ -292,3 +300,4 @@ export default function DatasetUpload() {
     </div>
   );
 }
+

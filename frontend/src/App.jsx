@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import DatasetUpload from './pages/DatasetUpload';
 import DatasetsList from './pages/DatasetsList';
+import AnalysisDashboard from './pages/AnalysisDashboard';
 import { BarChart3, Database, UploadCloud, LogOut, User as UserIcon } from 'lucide-react';
 
 function Navbar() {
@@ -52,7 +53,7 @@ function Navbar() {
               <Link
                 to="/datasets"
                 className={`px-3 py-1.5 text-sm font-medium rounded-lg transition flex items-center gap-1.5 ${
-                  isActive('/datasets')
+                  isActive('/datasets') || location.pathname.startsWith('/analyses/')
                     ? 'text-emerald-400 bg-emerald-950/40 border border-emerald-800/40'
                     : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                 }`}
@@ -138,6 +139,14 @@ export default function App() {
                 element={
                   <ProtectedRoute>
                     <DatasetsList />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/analyses/:id"
+                element={
+                  <ProtectedRoute>
+                    <AnalysisDashboard />
                   </ProtectedRoute>
                 }
               />

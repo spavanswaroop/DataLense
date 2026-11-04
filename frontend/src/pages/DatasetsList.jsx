@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { datasetApi } from '../services/api';
-import { Database, UploadCloud, Trash2, Calendar, FileText, CheckCircle2, AlertCircle, RefreshCw, Layers } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { datasetApi, analysisApi } from '../services/api';
+import { Database, UploadCloud, Trash2, FileText, CheckCircle2, AlertCircle, RefreshCw, Layers, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function DatasetsList() {
   const [datasets, setDatasets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deletingId, setDeletingId] = useState(null);
+  const [analyzingId, setAnalyzingId] = useState(null);
+
+  const navigate = useNavigate();
 
   const fetchDatasets = async () => {
     setLoading(true);
@@ -42,6 +45,20 @@ export default function DatasetsList() {
     }
   };
 
+  const handleTriggerAnalysis = async (datasetId) => {
+    setAnalyzingId(datasetId);
+    try {
+      const response = await analysisApi.triggerAnalysis(datasetId);
+      // Navigate to the analysis dashboard
+      navigate(`/analyses/${response.data.id}`);
+    } catch (err) {
+      alert('Failed to analyze dataset: ' + (err.response?.data?.message || err.message));
+      fetchDatasets();
+    } finally {
+      setAnalyzingId(null);
+    }
+  };
+
   const getStatusBadge = (status) => {
     switch (status) {
       case 'UPLOADED':
@@ -55,7 +72,7 @@ export default function DatasetsList() {
         return (
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-950/60 text-blue-400 border border-blue-800/60">
             <RefreshCw className="w-3 h-3 animate-spin" />
-            Processing
+            Analyzing
           </span>
         );
       case 'COMPLETED':
@@ -83,7 +100,7 @@ export default function DatasetsList() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-white">Dataset Management</h1>
           <p className="text-sm text-slate-400 mt-1">
-            Browse and manage your uploaded CSV datasets
+            Browse, inspect, and trigger automated AI quality analysis on your CSV datasets
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -116,8 +133,8 @@ export default function DatasetsList() {
           <p className="text-2xl font-bold text-emerald-400 mt-2">{totalRows.toLocaleString()}</p>
         </div>
         <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
-          <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Storage System</span>
-          <p className="text-2xl font-bold text-blue-400 mt-2">Local Isolated</p>
+          <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Quality Engine</span>
+          <p className="text-2xl font-bold text-purple-400 mt-2">FastAPI + Pandas</p>
         </div>
       </div>
 
@@ -198,14 +215,44 @@ export default function DatasetsList() {
                       {new Date(dataset.createdAt).toLocaleDateString()}
                     </td>
                     <td className="py-4 px-6 text-right">
-                      <button
-                        onClick={() => handleDelete(dataset.id, dataset.name)}
-                        disabled={deletingId === dataset.id}
-                        className="p-2 text-slate-400 hover:text-red-400 rounded-lg hover:bg-slate-800 transition disabled:opacity-50"
-                        title="Delete dataset"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      <div className="flex items-center justify-end gap-2">
+                        {dataset.status === 'COMPLETED' ? (
+                          <button
+                            onClick={() => handleTriggerAnalysis(dataset.id)}
+                            disabled={analyzingId === dataset.id}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition shadow-sm"
+                          >
+                            <Layers className="w-3.5 h-3.5" />
+                            View Analysis
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handleTriggerAnalysis(dataset.id)}
+                            disabled={analyzingId === dataset.id}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition disabled:opacity-50 shadow-sm"
+                          >
+                            {analyzingId === dataset.id ? (
+                              <>
+                                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                                Analyzing...
+                              </>
+                            ) : (
+                              <>
+                                <Sparkles className="w-3.5 h-3.5" />
+                                Run Analysis
+                              </>
+                            )}
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleDelete(dataset.id, dataset.name)}
+                          disabled={deletingId === dataset.id}
+                          className="p-2 text-slate-400 hover:text-red-400 rounded-lg hover:bg-slate-800 transition disabled:opacity-50"
+                          title="Delete dataset"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

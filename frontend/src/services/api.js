@@ -7,7 +7,7 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 30000,
+  timeout: 45000,
 });
 
 // Interceptor for JWT token attachment
@@ -39,6 +39,13 @@ export const datasetApi = {
   getDatasets: () => apiClient.get('/datasets'),
   getDatasetById: (id) => apiClient.get(`/datasets/${id}`),
   deleteDataset: (id) => apiClient.delete(`/datasets/${id}`),
+};
+
+export const analysisApi = {
+  triggerAnalysis: (datasetId) => apiClient.post(`/datasets/${datasetId}/analyze`),
+  getDatasetAnalyses: (datasetId) => apiClient.get(`/datasets/${datasetId}/analyses`),
+  getAnalysisById: (id) => apiClient.get(`/analyses/${id}`),
+  getColumnProfiles: (id) => apiClient.get(`/analyses/${id}/columns`),
 };
 
 export default apiClient;
