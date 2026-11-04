@@ -30,9 +30,15 @@ public class FileStorageService {
         }
     }
 
+    private static final long MAX_FILE_SIZE = 50 * 1024 * 1024L; // 50 MB
+
     public FileMetadata storeFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new InvalidFileException("Cannot upload an empty file");
+        }
+
+        if (file.getSize() > MAX_FILE_SIZE) {
+            throw new InvalidFileException("File size exceeds the 50MB maximum limit. Received: " + (file.getSize() / (1024 * 1024)) + " MB");
         }
 
         String originalFilename = StringUtils.cleanPath(file.getOriginalFilename() != null ? file.getOriginalFilename() : "");

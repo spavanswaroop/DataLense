@@ -71,6 +71,24 @@ class FileStorageServiceTest {
     }
 
     @Test
+    void testRejectOversizedFile() {
+        // Mock a file larger than 50MB (51MB)
+        MockMultipartFile largeFile = new MockMultipartFile(
+                "file",
+                "large.csv",
+                "text/csv",
+                new byte[1]
+        ) {
+            @Override
+            public long getSize() {
+                return 51 * 1024 * 1024L; // 51MB
+            }
+        };
+
+        assertThrows(InvalidFileException.class, () -> fileStorageService.storeFile(largeFile));
+    }
+
+    @Test
     void testRejectPathTraversal() {
         MockMultipartFile maliciousFile = new MockMultipartFile(
                 "file",
