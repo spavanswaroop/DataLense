@@ -4,6 +4,7 @@ from app.analyzers.missing_values import analyze_missing_values
 from app.analyzers.duplicates import analyze_duplicates
 from app.analyzers.outliers import analyze_outliers_iqr
 from app.analyzers.statistics import analyze_column_statistics
+from app.analyzers.correlation import analyze_correlations
 
 def test_missing_values_analysis():
     df = pd.DataFrame({
@@ -50,4 +51,24 @@ def test_column_statistics_analysis():
     gender_profile = next(p for p in profiles if p["column_name"] == "gender")
     assert gender_profile["data_type"] == "CATEGORICAL"
     assert gender_profile["statistics"]["top_value"] == "F"
+
+def test_correlation_analysis():
+    # Strong positive correlation between x and y (y = 2x)
+    df = pd.DataFrame({
+        "x": [1.0, 2.0, 3.0, 4.0, 5.0],
+        "y": [2.0, 4.0, 6.0, 8.0, 10.0],
+        "z": [5.0, 2.0, 1.0, 4.0, 3.0],
+        "category": ["A", "B", "C", "D", "E"]
+    })
+    result = analyze_correlations(df)
+    assert result["columns"] == ["x", "y", "z"]
+    assert len(result["matrix"]) == 3
+    # Check diagonal is 1.0
+    assert result["matrix"][0][0] == 1.0
+    # Check correlation between x and y is 1.0
+    assert result["matrix"][0][1] == 1.0
+    assert len(result["strong_correlations"]) >= 1
+    assert result["strong_correlations"][0]["feature_a"] in ["x", "y"]
+    assert result["strong_correlations"][0]["coefficient"] == 1.0
+    assert result["strong_correlations"][0]["relationship"] == "Strong Positive"
 

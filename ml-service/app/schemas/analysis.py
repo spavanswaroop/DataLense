@@ -26,5 +26,6 @@ class AnalysisResponse(BaseModel):
     outlier_columns: List[str]
     quality_score: float
     column_profiles: Optional[List[ColumnProfile]] = None
+    correlation: Optional[Dict[str, Any]] = None
     error_message: Optional[str] = None
 

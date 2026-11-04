@@ -5,6 +5,7 @@ from app.analyzers.missing_values import analyze_missing_values
 from app.analyzers.duplicates import analyze_duplicates
 from app.analyzers.outliers import analyze_outliers_iqr
 from app.analyzers.statistics import analyze_column_statistics
+from app.analyzers.correlation import analyze_correlations
 from app.services.quality_scorer import calculate_data_quality_score
 from app.schemas.analysis import AnalysisResponse, ColumnProfile
 
@@ -45,6 +46,7 @@ def run_full_analysis(dataset_id: str, file_path: str) -> AnalysisResponse:
         dup_res = analyze_duplicates(df)
         outlier_res = analyze_outliers_iqr(df)
         column_profiles_data = analyze_column_statistics(df)
+        correlation_res = analyze_correlations(df)
 
         # Calculate composite quality score
         quality_score = calculate_data_quality_score(
@@ -77,6 +79,7 @@ def run_full_analysis(dataset_id: str, file_path: str) -> AnalysisResponse:
             outlier_columns=outlier_res["outlier_columns"],
             quality_score=quality_score,
             column_profiles=typed_column_profiles,
+            correlation=correlation_res,
             error_message=None
         )
 

@@ -6,7 +6,8 @@ import {
 } from 'recharts';
 import {
   Layers, Database, Sparkles, CheckCircle2, AlertTriangle, XCircle,
-  ArrowLeft, RefreshCw, BarChart2, ShieldCheck, HelpCircle, FileText
+  ArrowLeft, RefreshCw, BarChart2, ShieldCheck, HelpCircle, FileText,
+  Network, Flame
 } from 'lucide-react';
 
 export default function AnalysisDashboard() {
@@ -15,6 +16,7 @@ export default function AnalysisDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedColumnName, setSelectedColumnName] = useState('');
+  const [hoveredCell, setHoveredCell] = useState(null);
 
   const fetchAnalysis = async () => {
     setLoading(true);
@@ -105,6 +107,21 @@ export default function AnalysisDashboard() {
   const duplicateRows = Number(summary.duplicate_rows || 0);
   const outlierColumns = Array.isArray(summary.outlier_columns) ? summary.outlier_columns : [];
   const columnProfiles = analysis.columnProfiles || [];
+  const correlation = summary.correlation || { columns: [], matrix: [], strong_correlations: [] };
+  const corrColumns = correlation.columns || [];
+  const corrMatrix = correlation.matrix || [];
+  const strongCorrelations = correlation.strong_correlations || [];
+
+  const getCorrelationColor = (val) => {
+    if (val >= 0.99) return 'bg-emerald-500/80 text-white font-bold';
+    if (val >= 0.7) return 'bg-emerald-600/70 text-emerald-100 font-bold';
+    if (val >= 0.4) return 'bg-emerald-700/40 text-emerald-200 font-medium';
+    if (val >= 0.1) return 'bg-emerald-950/40 text-emerald-300';
+    if (val > -0.1) return 'bg-slate-900/60 text-slate-400';
+    if (val > -0.4) return 'bg-rose-950/40 text-rose-300';
+    if (val > -0.7) return 'bg-rose-700/40 text-rose-200 font-medium';
+    return 'bg-rose-600/70 text-rose-100 font-bold';
+  };
 
   const selectedProfile = columnProfiles.find(c => c.columnName === selectedColumnName) || columnProfiles[0];
 
@@ -491,6 +508,142 @@ export default function AnalysisDashboard() {
                 </div>
               )}
             </div>
+          </div>
+        )}
+      </div>
+
+      {/* Feature Correlation Heatmap */}
+      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <Network className="w-5 h-5 text-indigo-400" />
+              Feature Correlation Heatmap
+            </h3>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Pearson correlation matrix (r ∈ [-1, +1]) identifying linear dependencies and multicollinearity
+            </p>
+          </div>
+
+          {/* Color Scale Legend */}
+          <div className="flex items-center gap-2 text-[11px] font-mono text-slate-400 bg-slate-950/60 px-3 py-1.5 rounded-lg border border-slate-800">
+            <span className="text-rose-400 font-bold">-1.0 (Inverse)</span>
+            <div className="w-24 h-2 rounded-full bg-gradient-to-r from-rose-500 via-slate-700 to-emerald-500" />
+            <span className="text-emerald-400 font-bold">+1.0 (Direct)</span>
+          </div>
+        </div>
+
+        {corrColumns.length >= 2 && corrMatrix.length > 0 ? (
+          <div className="space-y-6">
+            {/* Interactive Grid Table */}
+            <div className="overflow-x-auto pb-2">
+              <div className="inline-block min-w-full align-middle">
+                <table className="border-collapse text-xs">
+                  <thead>
+                    <tr>
+                      <th className="p-2 text-left font-semibold text-slate-400 border-b border-slate-800 w-32 sticky left-0 bg-slate-900/90 backdrop-blur z-10">
+                        Feature
+                      </th>
+                      {corrColumns.map((col) => (
+                        <th
+                          key={col}
+                          className="p-2 text-center font-semibold text-slate-300 border-b border-slate-800 min-w-[70px] max-w-[100px] truncate"
+                          title={col}
+                        >
+                          {col}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {corrColumns.map((rowCol, i) => (
+                      <tr key={rowCol} className="hover:bg-slate-800/30 transition">
+                        <td className="p-2 font-semibold text-white border-b border-slate-800/60 sticky left-0 bg-slate-900/90 backdrop-blur z-10 truncate max-w-[140px]" title={rowCol}>
+                          {rowCol}
+                        </td>
+                        {corrColumns.map((colName, j) => {
+                          const val = corrMatrix[i] ? corrMatrix[i][j] : 0;
+                          const isHovered = hoveredCell && hoveredCell.row === rowCol && hoveredCell.col === colName;
+                          return (
+                            <td
+                              key={colName}
+                              onMouseEnter={() => setHoveredCell({ row: rowCol, col: colName, val })}
+                              onMouseLeave={() => setHoveredCell(null)}
+                              className={`p-2.5 text-center font-mono text-[11px] border border-slate-950/80 cursor-pointer transition ${getCorrelationColor(val)} ${
+                                isHovered ? 'ring-2 ring-indigo-400 scale-105 z-20 rounded shadow-lg' : ''
+                              }`}
+                              title={`${rowCol} vs ${colName}: r = ${val}`}
+                            >
+                              {Number(val).toFixed(2)}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Hover Inspection Bar */}
+            <div className="min-h-[36px] flex items-center justify-between px-4 py-2 bg-slate-950/60 rounded-xl border border-slate-800 text-xs">
+              {hoveredCell ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-slate-400">Inspecting Correlation:</span>
+                  <span className="font-semibold text-white">{hoveredCell.row}</span>
+                  <span className="text-slate-500">×</span>
+                  <span className="font-semibold text-white">{hoveredCell.col}</span>
+                  <span className="font-mono font-bold text-indigo-400 ml-2">
+                    r = {Number(hoveredCell.val).toFixed(3)}
+                  </span>
+                  <span className="text-[11px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 ml-1">
+                    {Math.abs(hoveredCell.val) >= 0.7
+                      ? 'Strong Relationship'
+                      : Math.abs(hoveredCell.val) >= 0.3
+                      ? 'Moderate Relationship'
+                      : 'Weak / No Linear Relationship'}
+                  </span>
+                </div>
+              ) : (
+                <span className="text-slate-500 italic">
+                  Hover over any heatmap cell above to inspect the exact coefficient and relationship strength
+                </span>
+              )}
+            </div>
+
+            {/* Strong Multicollinearity Insights */}
+            {strongCorrelations.length > 0 && (
+              <div className="p-4 rounded-xl bg-indigo-950/20 border border-indigo-800/40 space-y-3">
+                <div className="flex items-center gap-2 text-indigo-300 font-semibold text-xs">
+                  <Flame className="w-4 h-4 text-indigo-400" />
+                  <span>Strong Multicollinearity Detected (|r| ≥ 0.70)</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  {strongCorrelations.map((pair, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-between"
+                    >
+                      <div>
+                        <div className="text-xs font-semibold text-white">
+                          {pair.feature_a} <span className="text-slate-500">&amp;</span> {pair.feature_b}
+                        </div>
+                        <div className="text-[11px] text-slate-400 mt-0.5">{pair.relationship}</div>
+                      </div>
+                      <span className={`text-xs font-mono font-bold px-2 py-1 rounded ${
+                        pair.coefficient > 0 ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-rose-950 text-rose-300 border border-rose-800'
+                      }`}>
+                        {pair.coefficient > 0 ? `+${pair.coefficient.toFixed(2)}` : pair.coefficient.toFixed(2)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="p-8 text-center bg-slate-950/40 rounded-xl border border-slate-800/80 text-slate-400 text-xs">
+            Dataset contains fewer than 2 numerical features. Correlation matrix requires at least 2 numerical columns.
           </div>
         )}
       </div>
