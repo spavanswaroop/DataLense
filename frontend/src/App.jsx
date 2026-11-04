@@ -1,20 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { BarChart3, LogOut, User as UserIcon } from 'lucide-react';
+import DatasetUpload from './pages/DatasetUpload';
+import DatasetsList from './pages/DatasetsList';
+import { BarChart3, Database, UploadCloud, LogOut, User as UserIcon } from 'lucide-react';
 
 function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="border-b border-slate-800 bg-slate-900/70 backdrop-blur sticky top-0 z-50">
@@ -31,16 +36,44 @@ function Navbar() {
           </span>
         </div>
 
-        <nav className="flex items-center gap-3">
+        <nav className="flex items-center gap-2">
           {isAuthenticated ? (
             <>
               <Link
                 to="/"
-                className="px-3 py-1.5 text-sm font-medium rounded-md text-emerald-400 bg-emerald-950/40 border border-emerald-800/40"
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition ${
+                  isActive('/')
+                    ? 'text-emerald-400 bg-emerald-950/40 border border-emerald-800/40'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                }`}
               >
                 Dashboard
               </Link>
-              <div className="h-5 w-px bg-slate-800 mx-1"></div>
+              <Link
+                to="/datasets"
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition flex items-center gap-1.5 ${
+                  isActive('/datasets')
+                    ? 'text-emerald-400 bg-emerald-950/40 border border-emerald-800/40'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                }`}
+              >
+                <Database className="w-4 h-4" />
+                Datasets
+              </Link>
+              <Link
+                to="/upload"
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition flex items-center gap-1.5 ${
+                  isActive('/upload')
+                    ? 'text-emerald-400 bg-emerald-950/40 border border-emerald-800/40'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                }`}
+              >
+                <UploadCloud className="w-4 h-4" />
+                Upload
+              </Link>
+
+              <div className="h-5 w-px bg-slate-800 mx-2"></div>
+
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/60 text-xs text-slate-300">
                 <UserIcon className="w-3.5 h-3.5 text-emerald-400" />
                 <span className="font-medium text-white">{user?.username}</span>
@@ -89,6 +122,22 @@ export default function App() {
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/upload"
+                element={
+                  <ProtectedRoute>
+                    <DatasetUpload />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/datasets"
+                element={
+                  <ProtectedRoute>
+                    <DatasetsList />
                   </ProtectedRoute>
                 }
               />

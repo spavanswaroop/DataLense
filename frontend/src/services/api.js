@@ -7,10 +7,10 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000,
+  timeout: 30000,
 });
 
-// Interceptor for JWT token attachment (prepared for Week 2)
+// Interceptor for JWT token attachment
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem('datalens_token');
   if (token) {
@@ -24,5 +24,21 @@ export const healthApi = {
   checkMlServiceViaBackend: () => apiClient.get('/health/ml-service'),
 };
 
-export default apiClient;
+export const datasetApi = {
+  uploadDataset: (formData, onProgress) => apiClient.post('/datasets', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    onUploadProgress: (progressEvent) => {
+      if (onProgress && progressEvent.total) {
+        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        onProgress(percentCompleted);
+      }
+    },
+  }),
+  getDatasets: () => apiClient.get('/datasets'),
+  getDatasetById: (id) => apiClient.get(`/datasets/${id}`),
+  deleteDataset: (id) => apiClient.delete(`/datasets/${id}`),
+};
 
+export default apiClient;
