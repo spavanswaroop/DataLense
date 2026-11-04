@@ -1,0 +1,13 @@
+# Instructions: Copy this file as 'application-local.yml' if you want to override database settings locally.
+# (application-local.yml is in .gitignore and will never be committed)
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/datalens
+    username: postgres
+    password: YOUR_POSTGRES_PASSWORD_HERE
+
+datalens:
+  ml-service:
+    url: http://localhost:8000/internal/v1
+
