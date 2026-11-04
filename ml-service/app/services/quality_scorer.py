@@ -39,3 +39,4 @@ def calculate_data_quality_score(
 
     quality_score = (0.4 * completeness) + (0.2 * uniqueness) + (0.2 * validity) + (0.2 * consistency)
     return round(max(0.0, min(100.0, quality_score)), 1)
+

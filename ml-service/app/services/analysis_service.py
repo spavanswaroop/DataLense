@@ -92,3 +92,4 @@ def run_full_analysis(dataset_id: str, file_path: str) -> AnalysisResponse:
             column_profiles=[],
             error_message=f"Analysis pipeline error: {str(e)}"
         )
+

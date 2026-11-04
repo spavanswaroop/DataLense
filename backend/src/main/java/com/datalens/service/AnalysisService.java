@@ -31,8 +31,7 @@ public class AnalysisService {
             ColumnProfileRepository columnProfileRepository,
             DatasetRepository datasetRepository,
             UserRepository userRepository,
-            MlServiceClient mlServiceClient
-    ) {
+            MlServiceClient mlServiceClient) {
         this.analysisRunRepository = analysisRunRepository;
         this.columnProfileRepository = columnProfileRepository;
         this.datasetRepository = datasetRepository;

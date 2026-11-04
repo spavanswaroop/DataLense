@@ -72,7 +72,7 @@ class FileStorageServiceTest {
 
     @Test
     void testRejectOversizedFile() {
-        // Mock a file larger than 50MB (51MB)
+        // Mock a file larger than 100MB (101MB)
         MockMultipartFile largeFile = new MockMultipartFile(
                 "file",
                 "large.csv",
@@ -81,7 +81,7 @@ class FileStorageServiceTest {
         ) {
             @Override
             public long getSize() {
-                return 51 * 1024 * 1024L; // 51MB
+                return 101 * 1024 * 1024L; // 101MB
             }
         };
 

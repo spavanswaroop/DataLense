@@ -54,3 +54,4 @@ def test_analyze_non_existent_file():
     data = response.json()
     assert data["status"] == "FAILED"
     assert "not found" in data["error_message"].lower()
+

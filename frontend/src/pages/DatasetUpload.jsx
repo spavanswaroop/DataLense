@@ -34,8 +34,8 @@ export default function DatasetUpload() {
       return;
     }
 
-    if (selectedFile.size > 50 * 1024 * 1024) {
-      setError('File size exceeds the 50MB maximum limit.');
+    if (selectedFile.size > 100 * 1024 * 1024) {
+      setError('File size exceeds the 100MB maximum limit.');
       return;
     }
 
@@ -195,13 +195,12 @@ export default function DatasetUpload() {
             onDragOver={handleDrag}
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
-            className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition flex flex-col items-center justify-center min-h-[220px] ${
-              dragActive
-                ? 'border-emerald-500 bg-emerald-950/20'
-                : file
+            className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition flex flex-col items-center justify-center min-h-[220px] ${dragActive
+              ? 'border-emerald-500 bg-emerald-950/20'
+              : file
                 ? 'border-slate-600 bg-slate-900/60'
                 : 'border-slate-800 hover:border-slate-700 bg-slate-900/40'
-            }`}
+              }`}
           >
             <input
               ref={fileInputRef}
@@ -219,7 +218,7 @@ export default function DatasetUpload() {
               {dragActive ? 'Drop your CSV file here' : 'Drag & drop your CSV file here, or click to browse'}
             </p>
             <p className="text-xs text-slate-400 mt-1">
-              Supports CSV files up to 50MB
+              Supports CSV files up to 100MB
             </p>
           </div>
 
