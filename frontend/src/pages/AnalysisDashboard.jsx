@@ -64,6 +64,39 @@ export default function AnalysisDashboard() {
     );
   }
 
+  if (analysis.status === 'FAILED') {
+    return (
+      <div className="p-8 rounded-2xl bg-red-950/30 border border-red-800/40 text-center space-y-4 max-w-xl mx-auto">
+        <XCircle className="w-10 h-10 text-red-400 mx-auto" />
+        <h2 className="text-xl font-bold text-white">Analysis Failed</h2>
+        <p className="text-sm text-red-300">{analysis.errorMessage || 'An error occurred during dataset analysis.'}</p>
+        <div className="flex items-center justify-center gap-3 pt-2">
+          <Link
+            to="/datasets"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 text-white transition"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Datasets
+          </Link>
+          <button
+            onClick={async () => {
+              try {
+                const res = await analysisApi.triggerAnalysis(analysis.datasetId);
+                window.location.href = `/analyses/${res.data.id}`;
+              } catch (err) {
+                alert('Retry failed: ' + (err.response?.data?.message || err.message));
+              }
+            }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-purple-600 hover:bg-purple-500 text-white transition"
+          >
+            <RefreshCw className="w-4 h-4" />
+            Retry Analysis
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const summary = analysis.summary || {};
   const qualityScore = Number(summary.quality_score || 0);
   const rows = Number(summary.rows || 0);
