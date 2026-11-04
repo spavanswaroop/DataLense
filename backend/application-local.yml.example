@@ -10,4 +10,3 @@ spring:
 datalens:
   ml-service:
     url: http://localhost:8000/internal/v1
-
