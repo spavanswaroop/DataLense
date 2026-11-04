@@ -1,0 +1,86 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+backend/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/.vite/
+
+# Python / ML-Service
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+ml-service/build/
+ml-service/develop-eggs/
+ml-service/dist/
+ml-service/downloads/
+ml-service/eggs/
+ml-service/.eggs/
+ml-service/lib/
+ml-service/lib64/
+ml-service/parts/
+ml-service/sdist/
+ml-service/var/
+ml-service/wheels/
+ml-service/share/python-wheels/
+ml-service/*.egg-info/
+ml-service/.installed.cfg
+ml-service/*.egg
+ml-service/MANIFEST
+ml-service/venv/
+ml-service/.venv/
+ml-service/env/
+ml-service/ENV/
+ml-service/.pytest_cache/
+
+# Storage / Artifacts (keep directories, ignore user uploaded data & trained models)
+storage/uploads/*
+!storage/uploads/.gitkeep
+storage/processed/*
+!storage/processed/.gitkeep
+storage/models/*
+!storage/models/.gitkeep
+
+# Environment & Secrets (NEVER COMMIT CREDENTIALS)
+.env
+.env.*
+!.env.example
+application-local.yml
+application-local.properties
+
+# IDE & OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
