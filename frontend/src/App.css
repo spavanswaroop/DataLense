@@ -6,6 +6,8 @@
   --periwinkle-2: #c1d3fe;
   --periwinkle-3: #b6ccfe;
   --baby-blue-ice: #abc4ff;
+  --royal-blue: #1d70f5;
+  --royal-blue-hover: #155bc7;
 }
 
 /* Custom themed helper classes */
@@ -36,3 +38,21 @@
 .bg-baby-blue-ice { background-color: var(--baby-blue-ice); }
 .text-baby-blue-ice { color: var(--baby-blue-ice); }
 .border-baby-blue-ice { border-color: var(--baby-blue-ice); }
+
+.bg-royal-blue { background-color: var(--royal-blue); }
+.text-royal-blue { color: var(--royal-blue); }
+.border-royal-blue { border-color: var(--royal-blue); }
+
+/* Floating card styling inspired by reference image */
+.card-floating {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  border-radius: 1.25rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-floating:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+

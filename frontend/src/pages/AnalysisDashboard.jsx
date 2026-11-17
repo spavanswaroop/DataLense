@@ -287,7 +287,7 @@ export default function AnalysisDashboard() {
       {/* ========================================================================= */}
       {/* 1. HEADER: Dataset Name • Uploaded Size • Health Status Pill • Export    */}
       {/* ========================================================================= */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-4 border-b border-lavender-2 dark:border-slate-800">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-4 border-b border-blue-100/70 dark:border-slate-800">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Link
@@ -307,7 +307,7 @@ export default function AnalysisDashboard() {
             </h1>
             
             {/* Uploaded File Size Badge */}
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-slate-900 border border-slate-700 text-slate-300 shadow-sm">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-xs">
               <HardDrive className="w-3.5 h-3.5 text-slate-400" />
               {dataset?.formattedFileSize || formatBytes(estimatedMemoryBytes)}
             </span>
@@ -336,7 +336,7 @@ export default function AnalysisDashboard() {
           </button>
           <button
             onClick={fetchAnalysis}
-            className="p-2.5 rounded-lg bg-slate-900 border border-lavender-2 dark:border-slate-800 text-slate-400 hover:text-white transition"
+            className="p-2.5 rounded-lg bg-slate-900 border border-blue-100/70 dark:border-slate-800 text-slate-400 hover:text-white transition"
             title="Refresh Analysis"
           >
             <RefreshCw className="w-4 h-4" />
@@ -376,7 +376,7 @@ export default function AnalysisDashboard() {
           </div>
 
           <div className="mt-6">
-            <div className="w-full bg-slate-950/60 rounded-full h-2.5 overflow-hidden border border-lavender-2 dark:border-slate-800">
+            <div className="w-full bg-blue-100/60 dark:bg-blue-100/60 dark:bg-slate-950/60 rounded-full h-2.5 overflow-hidden border border-blue-100/70 dark:border-slate-800">
               <div
                 className={`h-2.5 rounded-full transition-all duration-700 ${scoreBadge.bar}`}
                 style={{ width: `${qualityScore}%` }}
@@ -389,7 +389,7 @@ export default function AnalysisDashboard() {
         </div>
 
         {/* Card 2: Rows / Cols / Memory */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
@@ -413,7 +413,7 @@ export default function AnalysisDashboard() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80 flex items-center justify-between text-xs">
+          <div className="mt-6 pt-4 border-t border-blue-100/70 dark:border-slate-800/80 flex items-center justify-between text-xs">
             <span className="text-slate-400 flex items-center gap-1">
               <HardDrive className="w-3.5 h-3.5 text-slate-500" />
               Memory Footprint:
@@ -425,7 +425,7 @@ export default function AnalysisDashboard() {
         </div>
 
         {/* Card 3: Missing % / Duplicate % */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
@@ -453,7 +453,7 @@ export default function AnalysisDashboard() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80 flex items-center justify-between text-xs">
+          <div className="mt-6 pt-4 border-t border-blue-100/70 dark:border-slate-800/80 flex items-center justify-between text-xs">
             <span className="text-slate-400">Total Valid Observations:</span>
             <span className="font-mono font-semibold text-slate-900 dark:text-white">
               {(rows - duplicateRows).toLocaleString()} rows
@@ -472,7 +472,7 @@ export default function AnalysisDashboard() {
             ? 'bg-rose-950/20 border-rose-800/40'
             : 'bg-amber-950/20 border-amber-800/40'
       }`}>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-lavender-2 dark:border-lavender-2 dark:border-slate-800/60">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-blue-100/70 dark:border-slate-800/60">
           <div className="flex items-center gap-2.5">
             {alerts.length === 0 ? (
               <CheckCircle2 className="w-5 h-5 text-emerald-400" />
@@ -507,12 +507,12 @@ export default function AnalysisDashboard() {
             {alerts.map((alert, idx) => {
               const IconComp = alert.icon;
               return (
-                <div key={idx} className={`p-3.5 rounded-xl border flex items-start gap-3 bg-slate-950/60 ${alert.color}`}>
+                <div key={idx} className={`p-3.5 rounded-xl border flex items-start gap-3 bg-blue-100/60 dark:bg-blue-100/60 dark:bg-slate-950/60 ${alert.color}`}>
                   <IconComp className="w-4 h-4 shrink-0 mt-0.5" />
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-slate-900 dark:text-white">{alert.title}</span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded uppercase font-bold bg-slate-900 border border-lavender-2 dark:border-slate-800">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded uppercase font-bold bg-slate-900 border border-blue-100/70 dark:border-slate-800">
                         {alert.severity}
                       </span>
                     </div>
@@ -534,7 +534,7 @@ export default function AnalysisDashboard() {
       {/* ========================================================================= */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Missing Values Breakdown & Imputation Tips */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur space-y-4">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <FileText className="w-4 h-4 text-emerald-400" />
@@ -546,7 +546,7 @@ export default function AnalysisDashboard() {
           </div>
 
           {missingColumns.length === 0 ? (
-            <div className="p-6 text-center rounded-xl bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+            <div className="p-6 text-center rounded-xl bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80">
               <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto" />
               <p className="text-sm font-semibold text-slate-900 dark:text-white mt-2">100% Complete Observations</p>
               <p className="text-xs text-slate-400 mt-1">
@@ -567,7 +567,7 @@ export default function AnalysisDashboard() {
                     </span>
                   </div>
                   {/* Progress bar representing missing percentage */}
-                  <div className="w-full bg-slate-950 rounded-full h-1.5 mt-2 overflow-hidden border border-lavender-2 dark:border-slate-800">
+                  <div className="w-full bg-blue-100/60 dark:bg-slate-950 rounded-full h-1.5 mt-2 overflow-hidden border border-blue-100/70 dark:border-slate-800">
                     <div
                       className="bg-amber-500 h-1.5 rounded-full"
                       style={{ width: `${Math.min(col.missingPercentage, 100)}%` }}
@@ -583,7 +583,7 @@ export default function AnalysisDashboard() {
         </div>
 
         {/* Statistical Outlier Detection (Tukey's IQR) */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur space-y-4">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-purple-400" />
@@ -594,7 +594,7 @@ export default function AnalysisDashboard() {
             </span>
           </div>
 
-          <div className="p-4 rounded-xl bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+          <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80">
             <span className="text-xs font-semibold text-slate-300">Tukey Fencing Rule</span>
             <p className="text-xs text-slate-400 mt-1 font-mono">
               [Q1 - 1.5 * IQR, Q3 + 1.5 * IQR]
@@ -605,7 +605,7 @@ export default function AnalysisDashboard() {
           </div>
 
           {outlierColumns.length === 0 ? (
-            <div className="p-5 text-center rounded-xl bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+            <div className="p-5 text-center rounded-xl bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80">
               <CheckCircle2 className="w-7 h-7 text-emerald-400 mx-auto" />
               <p className="text-sm font-semibold text-slate-900 dark:text-white mt-1.5">No Extreme Outliers</p>
               <p className="text-xs text-slate-400 mt-0.5">All numerical features sit comfortably within expected dispersion bounds.</p>
@@ -631,7 +631,7 @@ export default function AnalysisDashboard() {
       {/* ========================================================================= */}
       {/* 5. INTERACTIVE FEATURE VISUALIZER: Dropdown + 10-Bin Histogram + Stats   */}
       {/* ========================================================================= */}
-      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur space-y-6">
+      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -648,7 +648,7 @@ export default function AnalysisDashboard() {
             <select
               value={selectedColumnName}
               onChange={(e) => setSelectedColumnName(e.target.value)}
-              className="px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="px-3 py-2 bg-blue-100/60 dark:bg-slate-950 border border-slate-700 rounded-lg text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
               {columnProfiles.map((cp) => (
                 <option key={cp.columnName} value={cp.columnName}>
@@ -662,7 +662,7 @@ export default function AnalysisDashboard() {
         {selectedProfile && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-2">
             {/* Chart Area */}
-            <div className="lg:col-span-2 h-[270px] w-full bg-slate-950/40 rounded-xl p-4 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+            <div className="lg:col-span-2 h-[270px] w-full bg-blue-100/60 dark:bg-slate-950/40 rounded-xl p-4 border border-blue-100/70 dark:border-slate-800/80">
               {selectedProfile.dataType === 'NUMERICAL' ? (
                 selectedProfile.statistics?.histogram && selectedProfile.statistics.histogram.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
@@ -692,7 +692,7 @@ export default function AnalysisDashboard() {
                       <Tooltip
                         contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
                       />
-                      <Bar dataKey="count" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="count" fill="#1d70f5" radius={[0, 4, 4, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
@@ -705,7 +705,7 @@ export default function AnalysisDashboard() {
 
             {/* Feature Stats Summary Cards */}
             <div className="space-y-3">
-              <div className="p-4 rounded-xl bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800">
+              <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100/70 dark:border-slate-800">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Feature Type</span>
                 <p className="text-sm font-bold text-slate-900 dark:text-white mt-1 flex items-center gap-2">
                   <span className="font-mono text-emerald-400">{selectedProfile.dataType}</span>
@@ -719,34 +719,34 @@ export default function AnalysisDashboard() {
 
               {selectedProfile.dataType === 'NUMERICAL' && selectedProfile.statistics ? (
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="p-3 rounded-lg bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80">
                     <span className="text-slate-400">Mean</span>
                     <p className="font-mono font-bold text-slate-900 dark:text-white mt-0.5">{selectedProfile.statistics.mean ?? 'N/A'}</p>
                   </div>
-                  <div className="p-3 rounded-lg bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80">
                     <span className="text-slate-400">Std Dev</span>
                     <p className="font-mono font-bold text-slate-900 dark:text-white mt-0.5">{selectedProfile.statistics.std ?? 'N/A'}</p>
                   </div>
-                  <div className="p-3 rounded-lg bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80">
                     <span className="text-slate-400">Min</span>
                     <p className="font-mono font-bold text-slate-900 dark:text-white mt-0.5">{selectedProfile.statistics.min ?? 'N/A'}</p>
                   </div>
-                  <div className="p-3 rounded-lg bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80">
+                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80">
                     <span className="text-slate-400">Max</span>
                     <p className="font-mono font-bold text-slate-900 dark:text-white mt-0.5">{selectedProfile.statistics.max ?? 'N/A'}</p>
                   </div>
-                  <div className="p-3 rounded-lg bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80 col-span-2 flex items-center justify-between">
+                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80 col-span-2 flex items-center justify-between">
                     <span className="text-slate-400">Median (50%)</span>
                     <span className="font-mono font-bold text-emerald-400">{selectedProfile.statistics.median ?? 'N/A'}</span>
                   </div>
                 </div>
               ) : (
                 <div className="space-y-2 text-xs">
-                  <div className="p-3 rounded-lg bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80 flex items-center justify-between">
+                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80 flex items-center justify-between">
                     <span className="text-slate-400">Distinct Classes</span>
                     <span className="font-mono font-bold text-slate-900 dark:text-white">{selectedProfile.uniqueCount ?? 'N/A'}</span>
                   </div>
-                  <div className="p-3 rounded-lg bg-lavender/20 dark:bg-slate-950/40 border border-lavender-2 dark:border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80 flex items-center justify-between">
+                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-100/60 dark:bg-slate-950/40 border border-blue-100 dark:border-blue-100/70 dark:border-slate-800/80 flex items-center justify-between">
                     <span className="text-slate-400">Most Frequent (Mode)</span>
                     <span className="font-mono font-bold text-purple-400">{selectedProfile.statistics?.top_value ?? 'N/A'}</span>
                   </div>
@@ -760,7 +760,7 @@ export default function AnalysisDashboard() {
       {/* ========================================================================= */}
       {/* 6. PEARSON CORRELATION HEATMAP: Matrix + Tooltips + Multicollinearity     */}
       {/* ========================================================================= */}
-      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur space-y-6">
+      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -793,13 +793,13 @@ export default function AnalysisDashboard() {
               <table className="border-collapse text-center mx-auto text-xs font-mono">
                 <thead>
                   <tr>
-                    <th className="p-2 text-left text-slate-400 font-sans font-semibold text-xs border border-lavender-2 dark:border-slate-800">
+                    <th className="p-2 text-left text-slate-400 font-sans font-semibold text-xs border border-blue-100/70 dark:border-slate-800">
                       Feature
                     </th>
                     {corrColumns.map((col) => (
                       <th
                         key={col}
-                        className="p-2 text-slate-300 font-sans font-semibold text-xs border border-lavender-2 dark:border-slate-800 max-w-[100px] truncate"
+                        className="p-2 text-slate-300 font-sans font-semibold text-xs border border-blue-100/70 dark:border-slate-800 max-w-[100px] truncate"
                         title={col}
                       >
                         {col}
@@ -813,7 +813,7 @@ export default function AnalysisDashboard() {
                     return (
                       <tr key={rowName}>
                         <td
-                          className="p-2 text-left font-sans font-semibold text-slate-900 dark:text-white border border-lavender-2 dark:border-slate-800 max-w-[120px] truncate"
+                          className="p-2 text-left font-sans font-semibold text-slate-900 dark:text-white border border-blue-100/70 dark:border-slate-800 max-w-[120px] truncate"
                           title={rowName}
                         >
                           {rowName}
@@ -829,7 +829,7 @@ export default function AnalysisDashboard() {
                               key={colName}
                               onMouseEnter={() => setHoveredCell({ row: rowName, col: colName, val })}
                               onMouseLeave={() => setHoveredCell(null)}
-                              className={`p-2.5 transition-all cursor-pointer border border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80 ${getCorrelationColor(
+                              className={`p-2.5 transition-all cursor-pointer border border-blue-100/70 dark:border-slate-800/80 ${getCorrelationColor(
                                 val
                               )} ${isHovered ? 'ring-2 ring-white scale-110 z-10' : ''}`}
                               title={`${rowName} ↔ ${colName}: r = ${val}`}
@@ -846,7 +846,7 @@ export default function AnalysisDashboard() {
             </div>
 
             {/* Hover Inspection Bar */}
-            <div className="p-3 rounded-xl bg-lavender/20 dark:bg-slate-950/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 flex items-center justify-between text-xs">
+            <div className="p-3 rounded-xl bg-lavender/20 dark:bg-blue-100/60 dark:bg-blue-100/60 dark:bg-slate-950/60 border border-blue-100/70 dark:border-slate-800 flex items-center justify-between text-xs">
               {hoveredCell ? (
                 <div className="flex items-center gap-3">
                   <span className="font-semibold text-slate-900 dark:text-white">
@@ -886,7 +886,7 @@ export default function AnalysisDashboard() {
                   {strongCorrelations.map((pair, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-lg bg-slate-900/80 border border-lavender-2 dark:border-slate-800 flex items-center justify-between"
+                      className="p-3 rounded-lg bg-slate-900/80 border border-blue-100/70 dark:border-slate-800 flex items-center justify-between"
                     >
                       <div>
                         <div className="text-xs font-semibold text-slate-900 dark:text-white">
@@ -906,7 +906,7 @@ export default function AnalysisDashboard() {
             )}
           </div>
         ) : (
-          <div className="p-8 text-center bg-slate-950/40 rounded-xl border border-lavender-2 dark:border-lavender-2 dark:border-slate-800/80 text-slate-400 text-xs">
+          <div className="p-8 text-center bg-blue-100/60 dark:bg-slate-950/40 rounded-xl border border-blue-100/70 dark:border-slate-800/80 text-slate-400 text-xs">
             Dataset contains fewer than 2 numerical features. Correlation matrix requires at least 2 numerical columns.
           </div>
         )}
@@ -915,8 +915,8 @@ export default function AnalysisDashboard() {
       {/* ========================================================================= */}
       {/* 7. SCHEMA & COLUMN PROFILES MASTER TABLE: Types, Cardinality, Flags       */}
       {/* ========================================================================= */}
-      <div className="rounded-2xl border border-lavender-2 dark:border-slate-800 bg-slate-900/60 backdrop-blur overflow-hidden">
-        <div className="p-5 border-b border-lavender-2 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div className="rounded-2xl border border-blue-100/70 dark:border-slate-800 bg-slate-900/60 backdrop-blur overflow-hidden">
+        <div className="p-5 border-b border-blue-100/70 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Database className="w-4 h-4 text-emerald-400" />
@@ -926,14 +926,14 @@ export default function AnalysisDashboard() {
               Comprehensive structural diagnostics: Inferred types, distinct cardinality, null counts, and anomaly flags
             </p>
           </div>
-          <span className="text-xs font-mono text-slate-400 px-3 py-1 rounded bg-slate-950 border border-lavender-2 dark:border-slate-800 shrink-0">
+          <span className="text-xs font-mono text-slate-400 px-3 py-1 rounded bg-blue-100/60 dark:bg-slate-950 border border-blue-100/70 dark:border-slate-800 shrink-0">
             {columnProfiles.length} Total Registered Columns
           </span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-lavender/50 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-lavender-2 dark:border-slate-800">
+            <thead className="bg-blue-50/70 dark:bg-blue-100/60 dark:bg-blue-100/60 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-blue-100/70 dark:border-slate-800">
               <tr>
                 <th className="py-3.5 px-6">Column Name</th>
                 <th className="py-3.5 px-6">Inferred Type</th>
@@ -950,7 +950,7 @@ export default function AnalysisDashboard() {
                 const isHighCardinality = cp.uniqueCount > (rows * 0.95) && rows > 50;
 
                 return (
-                  <tr key={cp.id || cp.columnName} className="hover:bg-lavender/30 dark:hover:bg-slate-800/40 transition">
+                  <tr key={cp.id || cp.columnName} className="hover:bg-blue-50/40 dark:hover:bg-slate-800/40 transition">
                     <td className="py-3.5 px-6 font-semibold text-slate-900 dark:text-white">
                       {cp.columnName}
                     </td>

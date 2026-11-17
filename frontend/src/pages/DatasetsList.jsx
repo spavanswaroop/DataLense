@@ -63,28 +63,28 @@ export default function DatasetsList() {
     switch (status) {
       case 'UPLOADED':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/60">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-400 dark:border-emerald-800/60">
             <CheckCircle2 className="w-3 h-3" />
             Uploaded
           </span>
         );
       case 'PROCESSING':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-950/60 text-blue-400 border border-blue-800/60">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-royal-blue border border-blue-200 dark:bg-blue-950/60 dark:text-blue-400 dark:border-blue-800/60">
             <RefreshCw className="w-3 h-3 animate-spin" />
             Analyzing
           </span>
         );
       case 'COMPLETED':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-purple-950/60 text-purple-400 border border-purple-800/60">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-royal-blue border border-blue-200 dark:bg-slate-800 dark:text-blue-300 dark:border-slate-700">
             <Layers className="w-3 h-3" />
             Analyzed
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-950/60 text-red-400 border border-red-800/60">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-50 text-rose-700 border border-rose-200 dark:bg-red-950/60 dark:text-red-400 dark:border-red-800/60">
             <AlertCircle className="w-3 h-3" />
             Failed
           </span>
@@ -107,14 +107,14 @@ export default function DatasetsList() {
           <button
             onClick={fetchDatasets}
             disabled={loading}
-            className="p-2.5 rounded-lg bg-slate-900 border border-lavender-2 dark:border-slate-800 text-slate-400 hover:text-white transition disabled:opacity-50"
+            className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-800 text-slate-500 hover:text-royal-blue dark:hover:text-white shadow-xs transition disabled:opacity-50"
             title="Refresh list"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
           </button>
           <Link
             to="/upload"
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold transition shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-royal-blue hover:bg-royal-blue-hover text-white shadow-md shadow-blue-500/20 transition"
           >
             <UploadCloud className="w-4 h-4" />
             Upload Dataset
@@ -124,17 +124,17 @@ export default function DatasetsList() {
 
       {/* Metrics Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="p-5 rounded-xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur">
-          <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Datasets</span>
-          <p className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{datasets.length}</p>
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition">
+          <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Total Datasets</span>
+          <p className="text-3xl font-extrabold text-royal-blue font-mono tracking-tight mt-2">{datasets.length}</p>
         </div>
-        <div className="p-5 rounded-xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur">
-          <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Rows Profiled</span>
-          <p className="text-2xl font-bold text-emerald-400 mt-2">{totalRows.toLocaleString()}</p>
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition">
+          <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Total Rows Profiled</span>
+          <p className="text-3xl font-extrabold text-royal-blue font-mono tracking-tight mt-2">{totalRows.toLocaleString()}</p>
         </div>
-        <div className="p-5 rounded-xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur">
-          <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Quality Engine</span>
-          <p className="text-2xl font-bold text-purple-400 mt-2">FastAPI + Pandas</p>
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition">
+          <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Quality Engine</span>
+          <p className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono tracking-tight mt-2">FastAPI + Pandas</p>
         </div>
       </div>
 
@@ -146,7 +146,7 @@ export default function DatasetsList() {
       )}
 
       {/* Datasets Table */}
-      <div className="rounded-2xl border border-lavender-2 dark:border-slate-800 bg-slate-900/60 backdrop-blur overflow-hidden">
+      <div className="rounded-2xl border border-blue-100/70 dark:border-slate-800 bg-white dark:bg-slate-900/70 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
             <RefreshCw className="w-6 h-6 animate-spin text-emerald-400" />
@@ -165,7 +165,7 @@ export default function DatasetsList() {
             </div>
             <Link
               to="/upload"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold transition"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-royal-blue hover:bg-royal-blue-hover text-white transition shadow-sm"
             >
               <UploadCloud className="w-4 h-4" />
               Upload First Dataset
@@ -174,7 +174,7 @@ export default function DatasetsList() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-lavender/50 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-lavender-2 dark:border-slate-800">
+              <thead className="bg-blue-50/70 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-blue-100 dark:border-slate-800">
                 <tr>
                   <th className="py-3.5 px-6">Dataset Name</th>
                   <th className="py-3.5 px-6">Size</th>
@@ -185,12 +185,12 @@ export default function DatasetsList() {
                   <th className="py-3.5 px-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/80">
+              <tbody className="divide-y divide-blue-50 dark:divide-slate-800/80">
                 {datasets.map((dataset) => (
-                  <tr key={dataset.id} className="hover:bg-lavender/30 dark:hover:bg-slate-800/40 transition">
+                  <tr key={dataset.id} className="hover:bg-blue-50/40 dark:hover:bg-slate-800/40 transition">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
-                        <div className="p-2 bg-slate-800 rounded-lg text-emerald-400 shrink-0">
+                        <div className="p-2 bg-blue-50 dark:bg-slate-800 rounded-xl text-royal-blue shrink-0">
                           <FileText className="w-4 h-4" />
                         </div>
                         <div>
@@ -199,13 +199,13 @@ export default function DatasetsList() {
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-6 text-slate-300 font-mono text-xs">
+                    <td className="py-4 px-6 text-slate-600 dark:text-slate-300 font-mono text-xs">
                       {dataset.formattedFileSize}
                     </td>
-                    <td className="py-4 px-6 font-semibold text-baby-blue-ice font-mono">
+                    <td className="py-4 px-6 font-semibold text-royal-blue font-mono">
                       {dataset.rowCount?.toLocaleString()}
                     </td>
-                    <td className="py-4 px-6 text-slate-300 font-mono">
+                    <td className="py-4 px-6 text-slate-600 dark:text-slate-300 font-mono">
                       {dataset.columnCount}
                     </td>
                     <td className="py-4 px-6">
@@ -220,7 +220,7 @@ export default function DatasetsList() {
                           <button
                             onClick={() => handleTriggerAnalysis(dataset.id)}
                             disabled={analyzingId === dataset.id}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition shadow-sm"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-royal-blue hover:bg-royal-blue-hover text-white transition shadow-xs"
                           >
                             <Layers className="w-3.5 h-3.5" />
                             View Analysis
@@ -229,7 +229,7 @@ export default function DatasetsList() {
                           <button
                             onClick={() => handleTriggerAnalysis(dataset.id)}
                             disabled={analyzingId === dataset.id}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold transition disabled:opacity-50 shadow-sm"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition disabled:opacity-50 shadow-xs"
                           >
                             {analyzingId === dataset.id ? (
                               <>

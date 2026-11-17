@@ -26,17 +26,17 @@ function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="border-b border-[var(--nav-border)] bg-[var(--nav-bg)] backdrop-blur sticky top-0 z-50 transition-colors duration-200 shadow-sm">
+    <header className="border-b border-[var(--nav-border)] bg-[var(--nav-bg)] backdrop-blur-md sticky top-0 z-50 transition-colors duration-200 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-baby-blue-ice/15 rounded-lg text-baby-blue-ice border border-baby-blue-ice/20">
-            <BarChart3 className="w-6 h-6" />
+          <div className="p-2 bg-blue-100/80 dark:bg-blue-950/60 rounded-xl text-royal-blue dark:text-baby-blue-ice border border-blue-200/60 dark:border-blue-800/40 shadow-xs">
+            <BarChart3 className="w-5 h-5" />
           </div>
           <Link to="/" className="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:opacity-90 transition">
-            Data<span className="text-baby-blue-ice">Lens</span>
+            Data<span className="text-royal-blue dark:text-baby-blue-ice">Lens</span>
           </Link>
-          <span className="ml-2 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-periwinkle-3/20 text-baby-blue-ice border border-periwinkle-2/30 rounded">
-            MVP v1.0
+          <span className="ml-2 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-blue-50 dark:bg-slate-800 text-royal-blue dark:text-baby-blue-ice border border-blue-200/60 dark:border-slate-700 rounded-full">
+            Observatory
           </span>
         </div>
 
@@ -45,20 +45,20 @@ function Navbar() {
             <>
               <Link
                 to="/"
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition ${
+                className={`px-3.5 py-1.5 text-sm font-medium rounded-xl transition ${
                   isActive('/')
-                    ? 'text-slate-900 dark:text-alice-blue bg-lavender dark:bg-periwinkle-3/20 border border-periwinkle-2 dark:border-periwinkle-2/40 shadow-sm font-semibold'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
+                    ? 'text-royal-blue dark:text-alice-blue bg-blue-100/80 dark:bg-periwinkle-3/20 border border-blue-200/80 dark:border-periwinkle-2/40 shadow-xs font-semibold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-royal-blue dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/50'
                 }`}
               >
                 Dashboard
               </Link>
               <Link
                 to="/datasets"
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 text-sm font-medium rounded-xl transition flex items-center gap-1.5 ${
                   isActive('/datasets') || location.pathname.startsWith('/analyses/')
-                    ? 'text-slate-900 dark:text-alice-blue bg-lavender dark:bg-periwinkle-3/20 border border-periwinkle-2 dark:border-periwinkle-2/40 shadow-sm font-semibold'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
+                    ? 'text-royal-blue dark:text-alice-blue bg-blue-100/80 dark:bg-periwinkle-3/20 border border-blue-200/80 dark:border-periwinkle-2/40 shadow-xs font-semibold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-royal-blue dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <Database className="w-4 h-4" />
@@ -66,39 +66,39 @@ function Navbar() {
               </Link>
               <Link
                 to="/upload"
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 text-sm font-medium rounded-xl transition flex items-center gap-1.5 ${
                   isActive('/upload')
-                    ? 'text-slate-900 dark:text-alice-blue bg-lavender dark:bg-periwinkle-3/20 border border-periwinkle-2 dark:border-periwinkle-2/40 shadow-sm font-semibold'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
+                    ? 'text-royal-blue dark:text-alice-blue bg-blue-100/80 dark:bg-periwinkle-3/20 border border-blue-200/80 dark:border-periwinkle-2/40 shadow-xs font-semibold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-royal-blue dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <UploadCloud className="w-4 h-4" />
                 Upload
               </Link>
 
-                            {/* Theme Toggle Button */}
+              {/* Theme Toggle Button */}
               <button
                 onClick={toggleTheme}
                 title={theme === 'dark' ? 'Switch to White Theme' : 'Switch to Dark Mode'}
-                className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition"
+                className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/70 dark:hover:bg-slate-800/60 transition"
               >
                 {theme === 'dark' ? (
                   <Sun className="w-4 h-4 text-amber-400" />
                 ) : (
-                  <Moon className="w-4 h-4 text-indigo-600" />
+                  <Moon className="w-4 h-4 text-royal-blue" />
                 )}
               </button>
 
-              <div className="h-5 w-px bg-lavender-2 dark:bg-slate-800 mx-2"></div>
+              <div className="h-5 w-px bg-blue-100 dark:bg-slate-800 mx-1"></div>
 
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800/60 border border-lavender-2 dark:border-slate-700/60 text-xs text-slate-700 dark:text-slate-300 shadow-xs">
-                <UserIcon className="w-3.5 h-3.5 text-baby-blue-ice" />
-                <span className="font-medium text-slate-900 dark:text-white">{user?.username}</span>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-slate-800/80 border border-blue-100 dark:border-slate-700/60 text-xs text-slate-700 dark:text-slate-300 shadow-xs">
+                <UserIcon className="w-3.5 h-3.5 text-royal-blue dark:text-baby-blue-ice" />
+                <span className="font-semibold text-slate-800 dark:text-white">{user?.username}</span>
               </div>
               <button
                 onClick={handleLogout}
                 title="Log out"
-                className="p-2 rounded-lg text-slate-400 hover:text-red-400 hover:bg-slate-800/60 transition"
+                className="p-2 rounded-xl text-slate-400 hover:text-red-500 hover:bg-white/60 dark:hover:bg-slate-800/60 transition"
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -107,13 +107,13 @@ function Navbar() {
             <>
               <Link
                 to="/login"
-                className="px-3.5 py-1.5 text-sm font-medium text-slate-300 hover:text-white transition"
+                className="px-3.5 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition"
               >
                 Sign in
               </Link>
               <Link
                 to="/register"
-                className="px-3.5 py-1.5 text-sm font-medium text-white bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold rounded-lg transition"
+                className="px-4 py-2 text-sm font-semibold text-white bg-royal-blue hover:bg-royal-blue-hover rounded-xl shadow-md shadow-blue-500/20 transition"
               >
                 Get Started
               </Link>
