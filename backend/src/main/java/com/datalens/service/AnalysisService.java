@@ -72,6 +72,8 @@ public class AnalysisService {
                 summary.put("outlier_columns", mlResult.get("outlier_columns"));
                 summary.put("quality_score", mlResult.get("quality_score"));
                 summary.put("correlation", mlResult.get("correlation"));
+                summary.put("quality_breakdown", mlResult.get("quality_breakdown"));
+                summary.put("alerts", mlResult.get("alerts"));
 
                 savedRun.setSummary(summary);
                 savedRun.setStatus(AnalysisStatus.COMPLETED);

@@ -36,6 +36,47 @@ public class DatasetService {
     }
 
     @Transactional
+    public DatasetResponse createDemoDataset(String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + userEmail));
+
+        java.io.InputStream stream = getClass().getClassLoader().getResourceAsStream("demo/kaggle_unstable_customer_credit.csv");
+        if (stream == null) {
+            try {
+                java.nio.file.Path fallback = java.nio.file.Paths.get("src/main/resources/demo/kaggle_unstable_customer_credit.csv");
+                if (java.nio.file.Files.exists(fallback)) {
+                    stream = java.nio.file.Files.newInputStream(fallback);
+                } else {
+                    java.nio.file.Path rootFallback = java.nio.file.Paths.get("C:/DataLens/backend/src/main/resources/demo/kaggle_unstable_customer_credit.csv");
+                    if (java.nio.file.Files.exists(rootFallback)) {
+                        stream = java.nio.file.Files.newInputStream(rootFallback);
+                    }
+                }
+            } catch (Exception ignored) {}
+        }
+
+        if (stream == null) {
+            throw new RuntimeException("Demo dataset resource not found");
+        }
+
+        FileMetadata metadata = fileStorageService.storeStream(stream, "kaggle_unstable_customer_credit.csv");
+
+        Dataset dataset = Dataset.builder()
+                .user(user)
+                .name("Kaggle: Messy Customer Credit & Risk Benchmark")
+                .originalFilename("kaggle_unstable_customer_credit.csv")
+                .storagePath(metadata.getStoragePath())
+                .fileSize(metadata.getFileSize())
+                .rowCount(metadata.getRowCount())
+                .columnCount(metadata.getColumnCount())
+                .status(DatasetStatus.UPLOADED)
+                .build();
+
+        Dataset savedDataset = datasetRepository.save(dataset);
+        return DatasetResponse.fromEntity(savedDataset);
+    }
+
+    @Transactional
     public DatasetResponse uploadDataset(MultipartFile file, String customName, String userEmail) {
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + userEmail));

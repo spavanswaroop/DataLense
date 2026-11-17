@@ -32,6 +32,34 @@ public class FileStorageService {
 
     private static final long MAX_FILE_SIZE = 100 * 1024 * 1024L; // 100 MB
 
+    public FileMetadata storeStream(java.io.InputStream inputStream, String originalFilename) {
+        String generatedFilename = UUID.randomUUID() + ".csv";
+        Path targetPath = this.uploadLocation.resolve(generatedFilename);
+        try {
+            Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+            long rowCount = 0;
+            int columnCount = 0;
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(Files.newInputStream(targetPath)))) {
+                String headerLine = reader.readLine();
+                if (headerLine != null && !headerLine.trim().isEmpty()) {
+                    columnCount = headerLine.split(",").length;
+                    while (reader.readLine() != null) {
+                        rowCount++;
+                    }
+                }
+            }
+            return FileMetadata.builder()
+                    .storagePath(targetPath.toString())
+                    .fileSize(Files.size(targetPath))
+                    .rowCount(rowCount)
+                    .columnCount(columnCount)
+                    .build();
+        } catch (IOException e) {
+            try { Files.deleteIfExists(targetPath); } catch (IOException ignored) {}
+            throw new RuntimeException("Failed to store demo stream: " + e.getMessage(), e);
+        }
+    }
+
     public FileMetadata storeFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new InvalidFileException("Cannot upload an empty file");

@@ -1,6 +1,9 @@
 package com.datalens.controller;
 
 import com.datalens.dto.RegisterRequest;
+import org.springframework.http.MediaType;
+import com.datalens.dto.LoginRequest;
+
 import com.datalens.repository.DatasetRepository;
 import com.datalens.repository.UserRepository;
 import com.datalens.service.AuthService;
@@ -123,5 +126,39 @@ class DatasetControllerTest {
                         .header("Authorization", "Bearer " + userToken))
                 .andExpect(status().isNotFound());
     }
-}
 
+    @Test
+    void testLoadDemoDataset() throws Exception {
+        RegisterRequest registerRequest = RegisterRequest.builder()
+                .username("demo_presenter")
+                .email("presenter@datalens.com")
+                .password("Password123")
+                .build();
+
+        mockMvc.perform(post("/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(registerRequest)))
+                .andExpect(status().isCreated());
+
+        LoginRequest loginRequest = LoginRequest.builder()
+                .email("presenter@datalens.com")
+                .password("Password123")
+                .build();
+
+        MvcResult loginResult = mockMvc.perform(post("/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(loginRequest)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String token = objectMapper.readTree(loginResult.getResponse().getContentAsString()).get("token").asText();
+
+        // Call POST /datasets/demo
+        mockMvc.perform(post("/datasets/demo")
+                        .header("Authorization", "Bearer " + token))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name").value("Kaggle: Messy Customer Credit & Risk Benchmark"))
+                .andExpect(jsonPath("$.rowCount").value(284))
+                .andExpect(jsonPath("$.columnCount").value(11));
+    }
+}

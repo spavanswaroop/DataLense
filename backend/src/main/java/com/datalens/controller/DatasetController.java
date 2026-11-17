@@ -22,6 +22,12 @@ public class DatasetController {
         this.datasetService = datasetService;
     }
 
+    @PostMapping("/demo")
+    public ResponseEntity<DatasetResponse> loadDemoDataset(Authentication authentication) {
+        DatasetResponse response = datasetService.createDemoDataset(authentication.getName());
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<DatasetResponse> uploadDataset(
             @RequestParam("file") MultipartFile file,

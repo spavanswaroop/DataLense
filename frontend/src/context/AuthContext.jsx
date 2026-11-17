@@ -7,8 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('datalens_token'));
   const [loading, setLoading] = useState(true);
-
-  // Restore authenticated session on initial mount
   useEffect(() => {
     const fetchCurrentUser = async () => {
       const storedToken = localStorage.getItem('datalens_token');
