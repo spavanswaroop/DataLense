@@ -196,9 +196,9 @@ export default function DatasetUpload() {
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition flex flex-col items-center justify-center min-h-[220px] ${dragActive
-              ? 'border-emerald-500 bg-emerald-950/20'
+              ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/20'
               : file
-                ? 'border-slate-600 bg-slate-900/60'
+                ? 'border-slate-600 bg-slate-50 dark:bg-slate-900/60'
                 : 'border-slate-200 hover:border-royal-blue bg-white dark:bg-slate-900/40 shadow-sm dark:shadow-none'
               }`}
           >

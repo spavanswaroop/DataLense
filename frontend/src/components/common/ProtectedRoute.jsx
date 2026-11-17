@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--bg-app)] text-[var(--text-primary)] flex items-center justify-center">
         <div className="flex items-center gap-3 text-emerald-400">
           <RefreshCw className="w-6 h-6 animate-spin" />
           <span className="text-sm font-medium">Verifying authentication...</span>

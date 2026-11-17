@@ -346,7 +346,7 @@ export default function AnalysisDashboard() {
           </button>
           <button
             onClick={fetchAnalysis}
-            className="p-2.5 rounded-lg bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white transition"
+            className="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-royal-blue shadow-xs transition"
             title="Refresh Analysis"
           >
             <RefreshCw className="w-4 h-4" />
@@ -592,7 +592,7 @@ export default function AnalysisDashboard() {
               <AlertTriangle className="w-4 h-4 text-purple-400" />
               Statistical Outlier Detection (Tukey's IQR)
             </h3>
-            <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-800">
+            <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-800">
               1.5× IQR Boundary
             </span>
           </div>
@@ -713,7 +713,7 @@ export default function AnalysisDashboard() {
                 <p className="text-sm font-bold text-slate-900 dark:text-white mt-1 flex items-center gap-2">
                   <span className="font-mono text-emerald-400">{selectedProfile.dataType}</span>
                   {outlierColumns.includes(selectedProfile.columnName) && (
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-800 font-semibold">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-800 font-semibold">
                       Outliers
                     </span>
                   )}
@@ -889,7 +889,7 @@ export default function AnalysisDashboard() {
                   {strongCorrelations.map((pair, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-lg bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-between"
+                      className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between"
                     >
                       <div>
                         <div className="text-xs font-semibold text-slate-900 dark:text-white">
@@ -898,7 +898,7 @@ export default function AnalysisDashboard() {
                         <div className="text-[11px] text-slate-400 mt-0.5">{pair.relationship}</div>
                       </div>
                       <span className={`text-xs font-mono font-bold px-2 py-1 rounded ${
-                        pair.coefficient > 0 ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-rose-950 text-rose-300 border border-rose-800'
+                        pair.coefficient > 0 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800' : 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-800'
                       }`}>
                         {pair.coefficient > 0 ? `+${pair.coefficient.toFixed(2)}` : pair.coefficient.toFixed(2)}
                       </span>
@@ -918,7 +918,7 @@ export default function AnalysisDashboard() {
       {/* ========================================================================= */}
       {/* 7. SCHEMA & COLUMN PROFILES MASTER TABLE: Types, Cardinality, Flags       */}
       {/* ========================================================================= */}
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-900/60 backdrop-blur overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-sm overflow-hidden">
         <div className="p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -936,7 +936,7 @@ export default function AnalysisDashboard() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50/90 dark:bg-slate-100 dark:bg-slate-100 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
+            <thead className="bg-slate-50 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="py-3.5 px-6">Column Name</th>
                 <th className="py-3.5 px-6">Inferred Type</th>
@@ -953,20 +953,20 @@ export default function AnalysisDashboard() {
                 const isHighCardinality = cp.uniqueCount > (rows * 0.95) && rows > 50;
 
                 return (
-                  <tr key={cp.id || cp.columnName} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition">
+                  <tr key={cp.id || cp.columnName} className="bg-white hover:bg-slate-50 dark:bg-slate-900/60 dark:hover:bg-slate-800/40 transition">
                     <td className="py-3.5 px-6 font-semibold text-slate-900 dark:text-white">
                       {cp.columnName}
                     </td>
                     <td className="py-3.5 px-6">
                       <span className={`text-xs font-mono font-medium px-2 py-0.5 rounded ${
                         cp.dataType === 'NUMERICAL'
-                          ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-800/60'
-                          : 'bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-800/60'
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/60'
+                          : 'bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800/60'
                       }`}>
                         {cp.dataType}
                       </span>
                     </td>
-                    <td className="py-3.5 px-6 font-mono text-slate-300 text-xs">
+                    <td className="py-3.5 px-6 font-mono text-slate-700 dark:text-slate-300 font-semibold text-xs">
                       {cp.uniqueCount !== null && cp.uniqueCount !== undefined ? cp.uniqueCount.toLocaleString() : 'N/A'}
                     </td>
                     <td className={`py-3.5 px-6 font-mono text-xs ${hasMissing ? 'text-amber-400 font-semibold' : 'text-slate-400'}`}>
@@ -978,22 +978,22 @@ export default function AnalysisDashboard() {
                     <td className="py-3.5 px-6 text-right">
                       <div className="flex items-center justify-end gap-1.5 flex-wrap">
                         {hasOutlier && (
-                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-800">
+                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-800">
                             ⚠️ Outliers
                           </span>
                         )}
                         {hasMissing && (
-                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">
+                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
                             ⚠️ Nulls
                           </span>
                         )}
                         {isHighCardinality && cp.dataType === 'CATEGORICAL' && (
-                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800">
+                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-royal-blue border border-blue-200 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800">
                             ℹ️ High Cardinality
                           </span>
                         )}
                         {!hasOutlier && !hasMissing && !isHighCardinality && (
-                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/60 flex items-center gap-1">
+                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/60 flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" /> Healthy
                           </span>
                         )}
