@@ -70,14 +70,14 @@ export default function DatasetsList() {
         );
       case 'PROCESSING':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-royal-blue border border-blue-200 dark:bg-blue-950/60 dark:text-blue-400 dark:border-blue-800/60">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-50 text-royal-blue border border-slate-200 dark:bg-blue-950/60 dark:text-blue-400 dark:border-blue-800/60">
             <RefreshCw className="w-3 h-3 animate-spin" />
             Analyzing
           </span>
         );
       case 'COMPLETED':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-royal-blue border border-blue-200 dark:bg-slate-800 dark:text-blue-300 dark:border-slate-700">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-royal-blue border border-slate-200 dark:bg-slate-800 dark:text-blue-300 dark:border-slate-700">
             <Layers className="w-3 h-3" />
             Analyzed
           </span>
@@ -107,7 +107,7 @@ export default function DatasetsList() {
           <button
             onClick={fetchDatasets}
             disabled={loading}
-            className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-800 text-slate-500 hover:text-royal-blue dark:hover:text-white shadow-xs transition disabled:opacity-50"
+            className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-royal-blue dark:hover:text-white shadow-xs transition disabled:opacity-50"
             title="Refresh list"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -124,15 +124,15 @@ export default function DatasetsList() {
 
       {/* Metrics Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-md transition">
           <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Total Datasets</span>
           <p className="text-3xl font-extrabold text-royal-blue font-mono tracking-tight mt-2">{datasets.length}</p>
         </div>
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-md transition">
           <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Total Rows Profiled</span>
           <p className="text-3xl font-extrabold text-royal-blue font-mono tracking-tight mt-2">{totalRows.toLocaleString()}</p>
         </div>
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-md transition">
           <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Quality Engine</span>
           <p className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono tracking-tight mt-2">FastAPI + Pandas</p>
         </div>
@@ -146,7 +146,7 @@ export default function DatasetsList() {
       )}
 
       {/* Datasets Table */}
-      <div className="rounded-2xl border border-blue-100/70 dark:border-slate-800 bg-white dark:bg-slate-900/70 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 shadow-sm dark:shadow-none overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
             <RefreshCw className="w-6 h-6 animate-spin text-emerald-400" />
@@ -174,7 +174,7 @@ export default function DatasetsList() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-blue-50/70 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-blue-100 dark:border-slate-800">
+              <thead className="bg-slate-50/90 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="py-3.5 px-6">Dataset Name</th>
                   <th className="py-3.5 px-6">Size</th>
@@ -187,10 +187,10 @@ export default function DatasetsList() {
               </thead>
               <tbody className="divide-y divide-blue-50 dark:divide-slate-800/80">
                 {datasets.map((dataset) => (
-                  <tr key={dataset.id} className="hover:bg-blue-50/40 dark:hover:bg-slate-800/40 transition">
+                  <tr key={dataset.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
-                        <div className="p-2 bg-blue-50 dark:bg-slate-800 rounded-xl text-royal-blue shrink-0">
+                        <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-royal-blue shrink-0">
                           <FileText className="w-4 h-4" />
                         </div>
                         <div>

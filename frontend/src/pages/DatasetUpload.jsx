@@ -116,7 +116,7 @@ export default function DatasetUpload() {
         </div>
         <Link
           to="/datasets"
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-blue-100 dark:border-slate-700 shadow-xs hover:text-royal-blue transition"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-xs hover:text-royal-blue transition"
         >
           <Database className="w-4 h-4 text-baby-blue-ice" />
           View Dataset History
@@ -131,7 +131,7 @@ export default function DatasetUpload() {
       )}
 
       {uploadedDataset ? (
-        <div className="p-8 rounded-2xl bg-white dark:bg-slate-900/80 border border-blue-100/70 dark:border-emerald-500/30 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none text-center space-y-6">
+        <div className="p-8 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-emerald-500/30 shadow-sm dark:shadow-none text-center space-y-6">
           <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto text-emerald-600 border border-emerald-200">
             <CheckCircle2 className="w-8 h-8" />
           </div>
@@ -144,19 +144,19 @@ export default function DatasetUpload() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl mx-auto text-left">
-            <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-slate-950/60 border border-blue-100 dark:border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Dataset Name</span>
               <p className="text-sm font-semibold text-slate-900 dark:text-white mt-1 truncate">{uploadedDataset.name}</p>
             </div>
-            <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-slate-950/60 border border-blue-100 dark:border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">File Size</span>
               <p className="text-sm font-semibold text-slate-900 dark:text-white mt-1">{uploadedDataset.formattedFileSize}</p>
             </div>
-            <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-slate-950/60 border border-blue-100 dark:border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Rows</span>
               <p className="text-sm font-semibold text-royal-blue mt-1 font-mono">{uploadedDataset.rowCount?.toLocaleString()}</p>
             </div>
-            <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-slate-950/60 border border-blue-100 dark:border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Columns</span>
               <p className="text-sm font-semibold text-royal-blue mt-1 font-mono">{uploadedDataset.columnCount}</p>
             </div>
@@ -165,7 +165,7 @@ export default function DatasetUpload() {
           <div className="flex items-center justify-center gap-4 pt-2">
             <button
               onClick={resetForm}
-              className="px-5 py-2.5 rounded-xl text-sm font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-blue-100 dark:border-slate-700 shadow-xs hover:text-royal-blue transition"
+              className="px-5 py-2.5 rounded-xl text-sm font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-xs hover:text-royal-blue transition"
             >
               Upload Another
             </button>
@@ -199,7 +199,7 @@ export default function DatasetUpload() {
               ? 'border-emerald-500 bg-emerald-950/20'
               : file
                 ? 'border-slate-600 bg-slate-900/60'
-                : 'border-blue-200 hover:border-royal-blue bg-white dark:bg-slate-900/40 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.30)] dark:shadow-none'
+                : 'border-slate-200 hover:border-royal-blue bg-white dark:bg-slate-900/40 shadow-sm dark:shadow-none'
               }`}
           >
             <input
@@ -210,7 +210,7 @@ export default function DatasetUpload() {
               className="hidden"
             />
 
-            <div className="p-4 bg-blue-50 dark:bg-slate-800 rounded-2xl text-royal-blue mb-4 border border-blue-200/60 dark:border-slate-700">
+            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl text-royal-blue mb-4 border border-slate-200 dark:border-slate-700">
               <UploadCloud className="w-8 h-8" />
             </div>
 
@@ -224,9 +224,9 @@ export default function DatasetUpload() {
 
           {/* Selected File Details */}
           {file && (
-            <div className="p-4 rounded-xl bg-white dark:bg-slate-900/80 border border-blue-100 dark:border-slate-800 shadow-xs flex items-center justify-between">
+            <div className="p-4 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 bg-blue-50 dark:bg-slate-800 rounded-lg text-royal-blue">
+                <div className="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg text-royal-blue">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
@@ -256,7 +256,7 @@ export default function DatasetUpload() {
               value={datasetName}
               onChange={(e) => setDatasetName(e.target.value)}
               placeholder="e.g. Customer Churn Q3 2026"
-              className="mt-2 w-full px-4 py-2.5 bg-white dark:bg-slate-900/80 border border-blue-100 dark:border-slate-700/80 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-royal-blue text-sm transition shadow-xs"
+              className="mt-2 w-full px-4 py-2.5 bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-royal-blue text-sm transition shadow-xs"
             />
           </div>
 

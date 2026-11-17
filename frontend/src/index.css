@@ -10,40 +10,40 @@
   --color-periwinkle-2: #c1d3fe;
   --color-periwinkle-3: #b6ccfe;
   --color-baby-blue-ice: #abc4ff;
-  --color-royal-blue: #1d70f5;
-  --color-royal-blue-hover: #155bc7;
+  --color-royal-blue: #2563eb;
+  --color-royal-blue-hover: #1d4ed8;
 }
 
 :root {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color-scheme: light;
 
-  /* Color Palette - Reference Image + Pastel Spectrum */
-  --alice-blue: #edf2fb;
-  --lavender: #e2eafc;
-  --lavender-2: #d7e3fc;
-  --periwinkle: #ccdbfd;
-  --periwinkle-2: #c1d3fe;
-  --periwinkle-3: #b6ccfe;
-  --baby-blue-ice: #abc4ff;
-  --royal-blue: #1d70f5;
-  --royal-blue-hover: #155bc7;
+  /* Color Palette - Luminous White & Fade White Clean Theme */
+  --alice-blue: #f8fafc;
+  --lavender: #f1f5f9;
+  --lavender-2: #e2e8f0;
+  --periwinkle: #cbd5e1;
+  --periwinkle-2: #94a3b8;
+  --periwinkle-3: #64748b;
+  --baby-blue-ice: #3b82f6;
+  --royal-blue: #2563eb;
+  --royal-blue-hover: #1d4ed8;
 
-  /* Light Theme (LeaveMgr Reference: Soft Pastel Sky Canvas + Floating Crisp White Cards) */
-  --bg-app: #edf4fe;             /* Airy Soft Pastel Sky Blue */
-  --bg-card: #ffffff;            /* Crisp Pure White Floating Card */
-  --bg-card-subtle: #f8faff;     /* Very Light Baby Blue Wash */
-  --border-card: rgba(219, 234, 254, 0.8);  /* Delicate Blue-100 Border */
-  --border-subtle: rgba(226, 234, 252, 0.9);/* Soft Lavender */
-  --text-primary: #0f172a;       /* Deep Slate/Navy Headings */
-  --text-secondary: #475569;     /* Slate-600 Body */
+  /* Light Theme (Pristine White Containers & Fade-White Sub-surfaces) */
+  --bg-app: #f8fafc;             /* Crisp Airy Slate-50 Canvas */
+  --bg-card: #ffffff;            /* Pure Crisp White Floating Card */
+  --bg-card-subtle: #f8fafc;     /* Clean Fade White */
+  --border-card: #e2e8f0;        /* Crisp Slate-200 Border */
+  --border-subtle: #f1f5f9;      /* Slate-100 Sub-border */
+  --text-primary: #0f172a;       /* Deep Slate-900 Headings */
+  --text-secondary: #334155;     /* Slate-700 Body */
   --text-muted: #64748b;         /* Slate-500 Subtitles */
-  --nav-bg: rgba(255, 255, 255, 0.92);
-  --nav-border: rgba(219, 234, 254, 0.8);
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --nav-border: #e2e8f0;
 
-  /* Reference Ambient Blue-Tinted Floating Card Shadow */
-  --shadow-card: 0 10px 25px -5px rgba(186, 215, 255, 0.40), 0 8px 10px -6px rgba(186, 215, 255, 0.20);
-  --shadow-card-hover: 0 16px 32px -6px rgba(186, 215, 255, 0.55), 0 10px 14px -6px rgba(186, 215, 255, 0.30);
+  /* Subtle Crisp Elevation Shadow */
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
 .dark {
@@ -51,17 +51,17 @@
 
   /* Dark Mode Semantic Tokens */
   --bg-app: #080c14;             /* Dark Slate Canvas */
-  --bg-card: rgba(15, 23, 42, 0.75); /* Translucent Slate */
-  --bg-card-subtle: rgba(15, 23, 42, 0.9);
+  --bg-card: rgba(15, 23, 42, 0.85); /* Deep Translucent Slate */
+  --bg-card-subtle: rgba(15, 23, 42, 0.95);
   --border-card: #1e293b;        /* Slate-800 */
   --border-subtle: #334155;      /* Slate-700 */
   --text-primary: #f8fafc;       /* Crisp White Headings */
   --text-secondary: #cbd5e1;     /* Slate-300 Body */
   --text-muted: #94a3b8;         /* Slate-400 Meta */
-  --nav-bg: rgba(11, 15, 25, 0.88);
+  --nav-bg: rgba(11, 15, 25, 0.90);
   --nav-border: #1e293b;
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-  --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.35);
 }
 
 body {
@@ -72,4 +72,3 @@ body {
   color: var(--text-primary);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-

@@ -233,10 +233,10 @@ export default function Dashboard() {
       {/* ========================================================================= */}
       {/* 1. HEADER: Welcome Back • System Status Pill • Action Buttons             */}
       {/* ========================================================================= */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-blue-100/80 dark:border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-wider font-semibold text-royal-blue dark:text-baby-blue-ice bg-blue-100/80 dark:bg-slate-800 px-2.5 py-0.5 rounded-full border border-blue-200/60 dark:border-slate-700">
+            <span className="text-xs uppercase tracking-wider font-semibold text-royal-blue dark:text-baby-blue-ice bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
               Data Quality Observatory
             </span>
             <span className="text-slate-400">•</span>
@@ -271,7 +271,7 @@ export default function Dashboard() {
           <button
             onClick={loadDashboardData}
             disabled={loading}
-            className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-800 text-slate-500 hover:text-royal-blue dark:hover:text-white shadow-xs transition disabled:opacity-50"
+            className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-royal-blue dark:hover:text-white shadow-xs transition disabled:opacity-50"
             title="Refresh Dashboard Data"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -299,12 +299,12 @@ export default function Dashboard() {
       {/* ========================================================================= */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* KPI 1: Datasets Count */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-md transition flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
               Datasets Monitored
             </span>
-            <div className="p-2 rounded-xl bg-blue-50 dark:bg-slate-800 text-royal-blue dark:text-baby-blue-ice">
+            <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-royal-blue dark:text-baby-blue-ice">
               <Database className="w-4 h-4" />
             </div>
           </div>
@@ -315,12 +315,12 @@ export default function Dashboard() {
         </div>
 
         {/* KPI 2: Rows Profiled */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-md transition flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
               Rows Profiled
             </span>
-            <div className="p-2 rounded-xl bg-blue-50 dark:bg-slate-800 text-royal-blue dark:text-baby-blue-ice">
+            <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-royal-blue dark:text-baby-blue-ice">
               <Layers className="w-4 h-4" />
             </div>
           </div>
@@ -333,7 +333,7 @@ export default function Dashboard() {
         </div>
 
         {/* KPI 3: Avg Quality Score */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-md transition flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
               Avg Quality Score
@@ -351,7 +351,7 @@ export default function Dashboard() {
         </div>
 
         {/* KPI 4: Anomalies Intercepted */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none hover:shadow-[0_16px_32px_-6px_rgba(186,215,255,0.55)] transition flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-md transition flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
               Anomalies Intercepted
@@ -372,8 +372,8 @@ export default function Dashboard() {
       {/* ========================================================================= */}
       {/* 3. GLOBAL ANOMALY & QUALITY ALERTS WATCHLIST                              */}
       {/* ========================================================================= */}
-      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-blue-100/80 dark:border-slate-800">
+      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none space-y-4">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <Flame className="w-4 h-4 text-rose-500" />
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">Quality Watchlist & Defect Feed</h3>
@@ -388,7 +388,7 @@ export default function Dashboard() {
             {watchlistAlerts.slice(0, 6).map((alert, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-xl bg-blue-50/50 dark:bg-slate-950/60 border border-blue-100/80 dark:border-slate-800 hover:border-blue-200 dark:hover:border-slate-700 transition flex flex-col justify-between"
+                className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700 transition flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between">
@@ -408,7 +408,7 @@ export default function Dashboard() {
                   <p className="text-xs text-slate-800 dark:text-slate-200 font-semibold mt-1.5">{alert.title}</p>
                   <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">{alert.desc}</p>
                 </div>
-                <div className="mt-3 pt-2 border-t border-blue-100 dark:border-slate-800/60 text-right">
+                <div className="mt-3 pt-2 border-t border-slate-200 dark:border-slate-800/60 text-right">
                   <Link
                     to={`/analyses/${alert.analysisId}`}
                     className="text-[11px] font-semibold text-royal-blue dark:text-emerald-400 hover:underline transition inline-flex items-center gap-1"
@@ -437,7 +437,7 @@ export default function Dashboard() {
       {/* ========================================================================= */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Quality Score Distribution */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-4 flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none space-y-4 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <PieChart className="w-4 h-4 text-emerald-500" />
@@ -476,21 +476,21 @@ export default function Dashboard() {
 
               {/* Legend with Counts */}
               <div className="space-y-2 text-xs">
-                <div className="p-2.5 rounded-xl bg-blue-50/50 dark:bg-slate-950/40 border border-blue-100 dark:border-slate-800 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                   <span className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                     High Quality (≥80)
                   </span>
                   <span className="font-mono font-bold text-slate-900 dark:text-white">{highQualityCount}</span>
                 </div>
-                <div className="p-2.5 rounded-xl bg-blue-50/50 dark:bg-slate-950/40 border border-blue-100 dark:border-slate-800 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                   <span className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
                     Moderate (60-79)
                   </span>
                   <span className="font-mono font-bold text-slate-900 dark:text-white">{moderateQualityCount}</span>
                 </div>
-                <div className="p-2.5 rounded-xl bg-blue-50/50 dark:bg-slate-950/40 border border-blue-100 dark:border-slate-800 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                   <span className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
                     <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
                     Critical (&lt;60)
@@ -500,18 +500,18 @@ export default function Dashboard() {
               </div>
             </div>
           ) : (
-            <div className="p-8 text-center bg-blue-50/30 dark:bg-slate-950/40 rounded-xl border border-blue-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+            <div className="p-8 text-center bg-slate-50/60 dark:bg-slate-950/40 rounded-xl border border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
               No datasets profiled yet. Upload and analyze datasets to populate the quality distribution curve.
             </div>
           )}
 
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 pt-2 border-t border-blue-100 dark:border-slate-800/80">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-slate-800/80">
             Graded based on completeness, uniqueness, validity, and outlier resilience.
           </p>
         </div>
 
         {/* Right: Storage Footprint & Quota Meter */}
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-blue-100/70 dark:border-slate-800 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-5 flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none space-y-5 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <HardDrive className="w-4 h-4 text-royal-blue" />
@@ -531,7 +531,7 @@ export default function Dashboard() {
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full bg-blue-100/60 dark:bg-slate-950 rounded-full h-3 overflow-hidden border border-blue-200/50 dark:border-slate-800">
+            <div className="w-full bg-slate-100 dark:bg-slate-950 rounded-full h-3 overflow-hidden border border-slate-200/50 dark:border-slate-800">
               <div
                 className={`h-3 rounded-full transition-all duration-700 ${
                   storagePercentage > 85 ? 'bg-rose-500' : storagePercentage > 60 ? 'bg-amber-500' : 'bg-royal-blue'
@@ -542,13 +542,13 @@ export default function Dashboard() {
           </div>
 
           <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
-            <div className="p-3 rounded-xl bg-blue-50/50 dark:bg-slate-950/40 border border-blue-100 dark:border-slate-800">
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800">
               <span className="text-slate-500 dark:text-slate-400">Average File Size</span>
               <p className="font-mono font-bold text-slate-900 dark:text-white mt-1">
                 {totalDatasets > 0 ? formatBytes(totalStorageBytes / totalDatasets) : '0 B'}
               </p>
             </div>
-            <div className="p-3 rounded-xl bg-blue-50/50 dark:bg-slate-950/40 border border-blue-100 dark:border-slate-800">
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800">
               <span className="text-slate-500 dark:text-slate-400">Remaining Quota</span>
               <p className="font-mono font-bold text-emerald-600 dark:text-emerald-400 mt-1">
                 {formatBytes(Math.max(maxStorageLimitBytes - totalStorageBytes, 0))}
@@ -556,7 +556,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 pt-2 border-t border-blue-100 dark:border-slate-800/80">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-slate-800/80">
             Local zero-copy streaming architecture ensures zero memory overflow for files up to 100MB.
           </p>
         </div>
@@ -565,8 +565,8 @@ export default function Dashboard() {
       {/* ========================================================================= */}
       {/* 5. RECENT DATASETS TABLE                                                  */}
       {/* ========================================================================= */}
-      <div className="rounded-2xl border border-blue-100/70 dark:border-slate-800 bg-white dark:bg-slate-900/70 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none overflow-hidden">
-        <div className="p-5 border-b border-blue-100 dark:border-slate-800 flex items-center justify-between">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 shadow-sm dark:shadow-none overflow-hidden">
+        <div className="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div>
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <FileText className="w-4 h-4 text-royal-blue" />
@@ -600,7 +600,7 @@ export default function Dashboard() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-blue-50/70 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-blue-100 dark:border-slate-800">
+              <thead className="bg-slate-50/90 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="py-3.5 px-6">Dataset</th>
                   <th className="py-3.5 px-6">Size</th>
@@ -616,7 +616,7 @@ export default function Dashboard() {
                   const qScore = analysis?.summary?.quality_score;
 
                   return (
-                    <tr key={ds.id} className="hover:bg-blue-50/40 dark:hover:bg-slate-800/40 transition">
+                    <tr key={ds.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition">
                       <td className="py-3.5 px-6">
                         <div className="font-semibold text-slate-900 dark:text-white">{ds.name}</div>
                         <div className="text-[11px] text-slate-500">{ds.originalFilename}</div>
@@ -657,7 +657,7 @@ export default function Dashboard() {
                         <span
                           className={`inline-flex items-center gap-1 text-xs font-medium px-2.5 py-0.5 rounded-full ${
                             analysis?.status === 'COMPLETED'
-                              ? 'bg-blue-100 text-royal-blue border border-blue-200 dark:bg-slate-800 dark:text-blue-300 dark:border-slate-700'
+                              ? 'bg-blue-100 text-royal-blue border border-slate-200 dark:bg-slate-800 dark:text-blue-300 dark:border-slate-700'
                               : 'bg-slate-100 text-slate-600 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
                           }`}
                         >
@@ -703,7 +703,7 @@ export default function Dashboard() {
       {/* ========================================================================= */}
       {/* 6. 1-CLICK DEMO PLAYGROUND                                                */}
       {/* ========================================================================= */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-50/90 via-white to-blue-50/60 dark:from-purple-950/30 dark:via-slate-900 dark:to-slate-900 border border-blue-200/80 dark:border-purple-800/40 shadow-[0_10px_25px_-5px_rgba(186,215,255,0.40)] dark:shadow-none space-y-4">
+      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-purple-800/40 shadow-sm dark:shadow-none space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
@@ -735,15 +735,15 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
-          <div className="p-3.5 rounded-xl bg-white/90 dark:bg-slate-950/60 border border-blue-100 dark:border-slate-800/80 shadow-xs">
+          <div className="p-3.5 rounded-xl bg-white/90 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 shadow-xs">
             <span className="font-semibold text-slate-900 dark:text-white">🧪 Unstable Customer Credit</span>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Real financial credit scoring observations</p>
           </div>
-          <div className="p-3.5 rounded-xl bg-white/90 dark:bg-slate-950/60 border border-blue-100 dark:border-slate-800/80 shadow-xs">
+          <div className="p-3.5 rounded-xl bg-white/90 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 shadow-xs">
             <span className="font-semibold text-slate-900 dark:text-white">⚠️ Injected Quality Anomalies</span>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Missing cells, statistical outliers, skewness</p>
           </div>
-          <div className="p-3.5 rounded-xl bg-white/90 dark:bg-slate-950/60 border border-blue-100 dark:border-slate-800/80 shadow-xs">
+          <div className="p-3.5 rounded-xl bg-white/90 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 shadow-xs">
             <span className="font-semibold text-slate-900 dark:text-white">⚡ Instant Automated Report</span>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Automated $Q$-score, correlations & histograms</p>
           </div>
