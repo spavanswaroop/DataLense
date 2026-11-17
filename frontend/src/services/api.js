@@ -39,6 +39,7 @@ export const datasetApi = {
   getDatasets: () => apiClient.get('/datasets'),
   getDatasetById: (id) => apiClient.get(`/datasets/${id}`),
   deleteDataset: (id) => apiClient.delete(`/datasets/${id}`),
+  loadDemoDataset: () => apiClient.post('/datasets/demo'),
 };
 
 export const analysisApi = {
