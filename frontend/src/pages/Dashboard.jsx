@@ -279,7 +279,7 @@ export default function Dashboard() {
 
           <Link
             to="/upload"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold transition shadow-sm"
           >
             <UploadCloud className="w-4 h-4" />
             Upload Dataset

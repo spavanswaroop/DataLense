@@ -118,7 +118,7 @@ export default function DatasetUpload() {
           to="/datasets"
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition"
         >
-          <Database className="w-4 h-4 text-emerald-400" />
+          <Database className="w-4 h-4 text-baby-blue-ice" />
           View Dataset History
         </Link>
       </div>
@@ -132,7 +132,7 @@ export default function DatasetUpload() {
 
       {uploadedDataset ? (
         <div className="p-8 rounded-2xl bg-slate-900/80 border border-emerald-500/30 backdrop-blur text-center space-y-6">
-          <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto text-emerald-400 border border-emerald-500/20">
+          <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto text-baby-blue-ice border border-emerald-500/20">
             <CheckCircle2 className="w-8 h-8" />
           </div>
 
@@ -154,11 +154,11 @@ export default function DatasetUpload() {
             </div>
             <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Rows</span>
-              <p className="text-sm font-semibold text-emerald-400 mt-1">{uploadedDataset.rowCount?.toLocaleString()}</p>
+              <p className="text-sm font-semibold text-baby-blue-ice mt-1">{uploadedDataset.rowCount?.toLocaleString()}</p>
             </div>
             <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Columns</span>
-              <p className="text-sm font-semibold text-emerald-400 mt-1">{uploadedDataset.columnCount}</p>
+              <p className="text-sm font-semibold text-baby-blue-ice mt-1">{uploadedDataset.columnCount}</p>
             </div>
           </div>
 
@@ -210,7 +210,7 @@ export default function DatasetUpload() {
               className="hidden"
             />
 
-            <div className="p-4 bg-emerald-500/10 rounded-2xl text-emerald-400 mb-4 border border-emerald-500/20">
+            <div className="p-4 bg-emerald-500/10 rounded-2xl text-baby-blue-ice mb-4 border border-emerald-500/20">
               <UploadCloud className="w-8 h-8" />
             </div>
 
@@ -226,7 +226,7 @@ export default function DatasetUpload() {
           {file && (
             <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 bg-slate-800 rounded-lg text-emerald-400">
+                <div className="p-2.5 bg-slate-800 rounded-lg text-baby-blue-ice">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>

@@ -114,7 +114,7 @@ export default function DatasetsList() {
           </button>
           <Link
             to="/upload"
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold transition shadow-sm"
           >
             <UploadCloud className="w-4 h-4" />
             Upload Dataset
@@ -165,7 +165,7 @@ export default function DatasetsList() {
             </div>
             <Link
               to="/upload"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-emerald-600 hover:bg-emerald-500 text-white transition"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold transition"
             >
               <UploadCloud className="w-4 h-4" />
               Upload First Dataset
@@ -202,7 +202,7 @@ export default function DatasetsList() {
                     <td className="py-4 px-6 text-slate-300 font-mono text-xs">
                       {dataset.formattedFileSize}
                     </td>
-                    <td className="py-4 px-6 font-semibold text-emerald-400 font-mono">
+                    <td className="py-4 px-6 font-semibold text-baby-blue-ice font-mono">
                       {dataset.rowCount?.toLocaleString()}
                     </td>
                     <td className="py-4 px-6 text-slate-300 font-mono">
@@ -229,7 +229,7 @@ export default function DatasetsList() {
                           <button
                             onClick={() => handleTriggerAnalysis(dataset.id)}
                             disabled={analyzingId === dataset.id}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition disabled:opacity-50 shadow-sm"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-baby-blue-ice hover:bg-periwinkle-3 text-slate-950 font-bold transition disabled:opacity-50 shadow-sm"
                           >
                             {analyzingId === dataset.id ? (
                               <>
