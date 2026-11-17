@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-alice-blue: #edf2fb;
   --color-lavender: #e2eafc;
@@ -12,7 +14,9 @@
 
 :root {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  color-scheme: dark;
+  color-scheme: light;
+
+  /* User's Exact Color Palette */
   --alice-blue: #edf2fb;
   --lavender: #e2eafc;
   --lavender-2: #d7e3fc;
@@ -20,12 +24,43 @@
   --periwinkle-2: #c1d3fe;
   --periwinkle-3: #b6ccfe;
   --baby-blue-ice: #abc4ff;
+
+  /* Light Theme (White / Pastel) Semantic Tokens */
+  --bg-app: #edf2fb;             /* Alice Blue Canvas */
+  --bg-card: #ffffff;            /* Crisp White Card */
+  --bg-card-subtle: #f8faff;     /* Very Light Tint */
+  --border-card: #d7e3fc;        /* Lavender-2 Border */
+  --border-subtle: #e2eafc;      /* Soft Lavender */
+  --text-primary: #0f172a;       /* Deep Slate Headings */
+  --text-secondary: #475569;     /* Slate-600 Body */
+  --text-muted: #64748b;         /* Slate-500 Meta */
+  --nav-bg: rgba(255, 255, 255, 0.90);
+  --nav-border: #d7e3fc;
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Dark Mode Semantic Tokens */
+  --bg-app: #080c14;             /* Dark Slate Canvas */
+  --bg-card: rgba(15, 23, 42, 0.7); /* Translucent Slate */
+  --bg-card-subtle: rgba(15, 23, 42, 0.9);
+  --border-card: #1e293b;        /* Slate-800 */
+  --border-subtle: #334155;      /* Slate-700 */
+  --text-primary: #f8fafc;       /* Crisp White Headings */
+  --text-secondary: #cbd5e1;     /* Slate-300 Body */
+  --text-muted: #94a3b8;         /* Slate-400 Meta */
+  --nav-bg: rgba(11, 15, 25, 0.85);
+  --nav-border: #1e293b;
+  --shadow-card: none;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0b0f19;
-  color: #edf2fb;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }

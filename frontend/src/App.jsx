@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -9,10 +10,11 @@ import Register from './pages/Register';
 import DatasetUpload from './pages/DatasetUpload';
 import DatasetsList from './pages/DatasetsList';
 import AnalysisDashboard from './pages/AnalysisDashboard';
-import { BarChart3, Database, UploadCloud, LogOut, User as UserIcon } from 'lucide-react';
+import { BarChart3, Database, UploadCloud, LogOut, User as UserIcon, Sun, Moon } from 'lucide-react';
 
 function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -24,13 +26,13 @@ function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="border-b border-slate-800 bg-slate-900/70 backdrop-blur sticky top-0 z-50">
+    <header className="border-b border-[var(--nav-border)] bg-[var(--nav-bg)] backdrop-blur sticky top-0 z-50 transition-colors duration-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-baby-blue-ice/15 rounded-lg text-baby-blue-ice border border-baby-blue-ice/20">
             <BarChart3 className="w-6 h-6" />
           </div>
-          <Link to="/" className="text-xl font-bold tracking-tight text-white hover:opacity-90 transition">
+          <Link to="/" className="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:opacity-90 transition">
             Data<span className="text-baby-blue-ice">Lens</span>
           </Link>
           <span className="ml-2 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-periwinkle-3/20 text-baby-blue-ice border border-periwinkle-2/30 rounded">
@@ -45,8 +47,8 @@ function Navbar() {
                 to="/"
                 className={`px-3 py-1.5 text-sm font-medium rounded-lg transition ${
                   isActive('/')
-                    ? 'text-alice-blue bg-periwinkle-3/20 border border-periwinkle-2/40 shadow-sm'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                    ? 'text-slate-900 dark:text-alice-blue bg-lavender dark:bg-periwinkle-3/20 border border-periwinkle-2 dark:border-periwinkle-2/40 shadow-sm font-semibold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
                 }`}
               >
                 Dashboard
@@ -55,8 +57,8 @@ function Navbar() {
                 to="/datasets"
                 className={`px-3 py-1.5 text-sm font-medium rounded-lg transition flex items-center gap-1.5 ${
                   isActive('/datasets') || location.pathname.startsWith('/analyses/')
-                    ? 'text-alice-blue bg-periwinkle-3/20 border border-periwinkle-2/40 shadow-sm'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                    ? 'text-slate-900 dark:text-alice-blue bg-lavender dark:bg-periwinkle-3/20 border border-periwinkle-2 dark:border-periwinkle-2/40 shadow-sm font-semibold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <Database className="w-4 h-4" />
@@ -66,19 +68,32 @@ function Navbar() {
                 to="/upload"
                 className={`px-3 py-1.5 text-sm font-medium rounded-lg transition flex items-center gap-1.5 ${
                   isActive('/upload')
-                    ? 'text-alice-blue bg-periwinkle-3/20 border border-periwinkle-2/40 shadow-sm'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                    ? 'text-slate-900 dark:text-alice-blue bg-lavender dark:bg-periwinkle-3/20 border border-periwinkle-2 dark:border-periwinkle-2/40 shadow-sm font-semibold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <UploadCloud className="w-4 h-4" />
                 Upload
               </Link>
 
-              <div className="h-5 w-px bg-slate-800 mx-2"></div>
+                            {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                title={theme === 'dark' ? 'Switch to White Theme' : 'Switch to Dark Mode'}
+                className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <Moon className="w-4 h-4 text-indigo-600" />
+                )}
+              </button>
 
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/60 text-xs text-slate-300">
+              <div className="h-5 w-px bg-lavender-2 dark:bg-slate-800 mx-2"></div>
+
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800/60 border border-lavender-2 dark:border-slate-700/60 text-xs text-slate-700 dark:text-slate-300 shadow-xs">
                 <UserIcon className="w-3.5 h-3.5 text-baby-blue-ice" />
-                <span className="font-medium text-white">{user?.username}</span>
+                <span className="font-medium text-slate-900 dark:text-white">{user?.username}</span>
               </div>
               <button
                 onClick={handleLogout}
@@ -113,8 +128,9 @@ function Navbar() {
 export default function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+      <ThemeProvider>
+        <Router>
+        <div className="min-h-screen bg-[var(--bg-app)] text-[var(--text-primary)] transition-colors duration-200 flex flex-col font-sans">
           <Navbar />
 
           <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -156,11 +172,12 @@ export default function App() {
             </Routes>
           </main>
 
-          <footer className="border-t border-slate-800/80 bg-slate-900/40 py-4 text-center text-xs text-slate-500">
+          <footer className="border-t border-[var(--nav-border)] bg-[var(--bg-card)] py-4 text-center text-xs text-slate-500 transition-colors duration-200">
             DataLens Architecture • React.js + Spring Boot + FastAPI + PostgreSQL
           </footer>
         </div>
       </Router>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

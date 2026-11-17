@@ -98,7 +98,7 @@ export default function DatasetsList() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Dataset Management</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Dataset Management</h1>
           <p className="text-sm text-slate-400 mt-1">
             Browse, inspect, and trigger automated AI quality analysis on your CSV datasets
           </p>
@@ -107,7 +107,7 @@ export default function DatasetsList() {
           <button
             onClick={fetchDatasets}
             disabled={loading}
-            className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition disabled:opacity-50"
+            className="p-2.5 rounded-lg bg-slate-900 border border-lavender-2 dark:border-slate-800 text-slate-400 hover:text-white transition disabled:opacity-50"
             title="Refresh list"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -124,15 +124,15 @@ export default function DatasetsList() {
 
       {/* Metrics Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
+        <div className="p-5 rounded-xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur">
           <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Datasets</span>
-          <p className="text-2xl font-bold text-white mt-2">{datasets.length}</p>
+          <p className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{datasets.length}</p>
         </div>
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
+        <div className="p-5 rounded-xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur">
           <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Rows Profiled</span>
           <p className="text-2xl font-bold text-emerald-400 mt-2">{totalRows.toLocaleString()}</p>
         </div>
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
+        <div className="p-5 rounded-xl bg-white dark:bg-slate-900/60 border border-lavender-2 dark:border-lavender-2 dark:border-slate-800 shadow-sm dark:shadow-none backdrop-blur">
           <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Quality Engine</span>
           <p className="text-2xl font-bold text-purple-400 mt-2">FastAPI + Pandas</p>
         </div>
@@ -146,7 +146,7 @@ export default function DatasetsList() {
       )}
 
       {/* Datasets Table */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur overflow-hidden">
+      <div className="rounded-2xl border border-lavender-2 dark:border-slate-800 bg-slate-900/60 backdrop-blur overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
             <RefreshCw className="w-6 h-6 animate-spin text-emerald-400" />
@@ -158,7 +158,7 @@ export default function DatasetsList() {
               <Database className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">No Datasets Found</h3>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">No Datasets Found</h3>
               <p className="text-sm text-slate-400 mt-1 max-w-sm mx-auto">
                 You haven't uploaded any CSV files yet. Upload a dataset to begin automated quality analysis.
               </p>
@@ -174,7 +174,7 @@ export default function DatasetsList() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-950/60 text-xs uppercase tracking-wider text-slate-400 border-b border-slate-800">
+              <thead className="bg-lavender/50 dark:bg-slate-950/60 text-xs uppercase tracking-wider text-slate-700 dark:text-slate-400 border-b border-lavender-2 dark:border-slate-800">
                 <tr>
                   <th className="py-3.5 px-6">Dataset Name</th>
                   <th className="py-3.5 px-6">Size</th>
@@ -187,14 +187,14 @@ export default function DatasetsList() {
               </thead>
               <tbody className="divide-y divide-slate-800/80">
                 {datasets.map((dataset) => (
-                  <tr key={dataset.id} className="hover:bg-slate-800/40 transition">
+                  <tr key={dataset.id} className="hover:bg-lavender/30 dark:hover:bg-slate-800/40 transition">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
                         <div className="p-2 bg-slate-800 rounded-lg text-emerald-400 shrink-0">
                           <FileText className="w-4 h-4" />
                         </div>
                         <div>
-                          <p className="font-semibold text-white">{dataset.name}</p>
+                          <p className="font-semibold text-slate-900 dark:text-white">{dataset.name}</p>
                           <p className="text-xs text-slate-400">{dataset.originalFilename}</p>
                         </div>
                       </div>

@@ -109,7 +109,7 @@ export default function DatasetUpload() {
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Upload Dataset</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Upload Dataset</h1>
           <p className="text-sm text-slate-400 mt-1">
             Upload your CSV dataset for quality profiling and automated analysis
           </p>
@@ -144,19 +144,19 @@ export default function DatasetUpload() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl mx-auto text-left">
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-950/60 border border-lavender-2 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Dataset Name</span>
-              <p className="text-sm font-semibold text-white mt-1 truncate">{uploadedDataset.name}</p>
+              <p className="text-sm font-semibold text-slate-900 dark:text-white mt-1 truncate">{uploadedDataset.name}</p>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-950/60 border border-lavender-2 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">File Size</span>
-              <p className="text-sm font-semibold text-white mt-1">{uploadedDataset.formattedFileSize}</p>
+              <p className="text-sm font-semibold text-slate-900 dark:text-white mt-1">{uploadedDataset.formattedFileSize}</p>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-950/60 border border-lavender-2 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Rows</span>
               <p className="text-sm font-semibold text-baby-blue-ice mt-1">{uploadedDataset.rowCount?.toLocaleString()}</p>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-950/60 border border-lavender-2 dark:border-slate-800">
               <span className="text-xs text-slate-400 font-medium">Columns</span>
               <p className="text-sm font-semibold text-baby-blue-ice mt-1">{uploadedDataset.columnCount}</p>
             </div>
@@ -199,7 +199,7 @@ export default function DatasetUpload() {
               ? 'border-emerald-500 bg-emerald-950/20'
               : file
                 ? 'border-slate-600 bg-slate-900/60'
-                : 'border-slate-800 hover:border-slate-700 bg-slate-900/40'
+                : 'border-lavender-2 dark:border-slate-800 hover:border-slate-700 bg-slate-900/40'
               }`}
           >
             <input
@@ -214,7 +214,7 @@ export default function DatasetUpload() {
               <UploadCloud className="w-8 h-8" />
             </div>
 
-            <p className="text-base font-semibold text-white">
+            <p className="text-base font-semibold text-slate-900 dark:text-white">
               {dragActive ? 'Drop your CSV file here' : 'Drag & drop your CSV file here, or click to browse'}
             </p>
             <p className="text-xs text-slate-400 mt-1">
@@ -224,7 +224,7 @@ export default function DatasetUpload() {
 
           {/* Selected File Details */}
           {file && (
-            <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+            <div className="p-4 rounded-xl bg-slate-900/80 border border-lavender-2 dark:border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 bg-slate-800 rounded-lg text-baby-blue-ice">
                   <FileText className="w-5 h-5" />
@@ -280,7 +280,7 @@ export default function DatasetUpload() {
           <button
             type="submit"
             disabled={!file || uploading}
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-slate-900 dark:text-white bg-emerald-600 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
           >
             {uploading ? (
               <>
